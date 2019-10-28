@@ -18,11 +18,8 @@ public class Board {
             neighboursByCell.put(new Cell(false), new Cell[0]);
         }
 
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
-                Coordinates position = new Coordinates(x, y);
-                neighboursByCell.put(getCell(position), findNeighbours(position));
-            }
+        for (int i = 0; i < height * width; i++) {
+            neighboursByCell.put(getCell(i), findNeighbours(i));
         }
 
         for (Coordinates position : positionsOfLivingCells) {
@@ -30,16 +27,26 @@ public class Board {
         }
     }
 
-    private Cell[] findNeighbours(Coordinates position) {
-        int up = (position.y + height - 1) % (height);
-        int down = (position.y + height + 1) % (height);
-        int left = (position.x + width - 1) % (width);
-        int right = (position.x + width + 1) % (width);
+    private Cell[] findNeighbours(int index) {
+        int total = height*width;
 
-        return new Cell[] {getCell(new Coordinates(left, up)), getCell(new Coordinates(position.x, up)),
-                getCell(new Coordinates(right, up)), getCell(new Coordinates(right, position.y)), getCell(new Coordinates(right, down)),
-                getCell(new Coordinates(position.x, down)), getCell(new Coordinates(left, down)), getCell(new Coordinates(left, position.y))
+        int upLeft =        (index - 1 + width + total) % total;
+        int up =            (index - width + total) % total;
+        int upRight =       (index + 1 - width + total) % total;
+        int right =         (index + 1 + total) % total;
+        int downRight =     (index + 1 + width + total) % total;
+        int down =          (index + width + total) % total;
+        int downLeft =      (index - 1 + width + width + total) % total;
+        int left =          (index - 1 + total) % total;
+
+        return new Cell[] {getCell(upLeft), getCell(up),
+                getCell(upRight), getCell(right), getCell(downRight),
+                getCell(down), getCell(downLeft), getCell(left)
         };
+    }
+
+    private Cell getCell(int index) {
+        return (Cell) neighboursByCell.keySet().toArray()[index];
     }
 
     public Set<Cell> getCells() {
@@ -47,8 +54,8 @@ public class Board {
     }
 
     public Cell getCell(Coordinates position) {
-        int positionInSet = position.y * width + position.x;
-        return (Cell) neighboursByCell.keySet().toArray()[positionInSet];
+        int coordinatesAsIndex = position.y * width + position.x;
+        return getCell(coordinatesAsIndex);
     }
 
     public Cell[] getNeighbours(Cell cell) {
