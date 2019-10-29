@@ -1,7 +1,4 @@
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class Board {
     private Map<Cell, Cell[]> neighboursByCell;
@@ -73,6 +70,29 @@ public class Board {
 
     public Cell[] getNeighbours(Cell cell) {
         return neighboursByCell.get(cell);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Board board = (Board) o;
+        boolean cellsEqual = true;
+        for (int i = 0; i < height * width; i++) {
+            if (getCell(i).isAlive() != board.getCell(i).isAlive()) {
+                cellsEqual = false;
+                break;
+            }
+        }
+
+        return width == board.width &&
+                height == board.height &&
+                cellsEqual;
     }
 
 }
