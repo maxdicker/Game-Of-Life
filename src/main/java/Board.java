@@ -101,7 +101,7 @@ public class Board {
 
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                string.append(getCell(height+width));
+                string.append(getCell(y*width + x));
             }
             string.append("\n");
         }
