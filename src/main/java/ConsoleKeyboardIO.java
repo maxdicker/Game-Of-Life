@@ -76,11 +76,12 @@ public class ConsoleKeyboardIO implements IO {
 
     @Override
     public void printBoard(Board board) {
-
+        System.out.println(board);
     }
 
     @Override
     public void clearDisplay() {
-
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
 }

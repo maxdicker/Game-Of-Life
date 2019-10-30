@@ -12,4 +12,9 @@ public class Cell {
     public void setState(boolean isAlive) {
         this.alive = isAlive;
     }
+
+    @Override
+    public String toString() {
+        return alive ? "\u25FC" : "\u25FB";
+    }
 }
