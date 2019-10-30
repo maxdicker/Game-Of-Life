@@ -4,6 +4,8 @@ public interface IO {
     int getBoardHeight();
     int getBoardWidth();
     List<Coordinates> getPositionsOfLivingCells();
-    void displayBoard(Board board);
+    int getLengthOfSimulation();
+    void printWelcomeMessageAndRules();
+    void printBoard(Board board);
     void clearDisplay();
 }
