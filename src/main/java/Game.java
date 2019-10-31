@@ -24,7 +24,7 @@ public class Game {
             io.printBoard(board);
             board = controller.nextGeneration(board);
             try {
-                Thread.sleep(500);
+                Thread.sleep(750);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
