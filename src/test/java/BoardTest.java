@@ -19,38 +19,38 @@ public class BoardTest {
                     new Coordinates(4, 1), new Coordinates(4, 0));
 
     @Test
-    public void givenANewBoard_NumberOfCellsIsEqualToBoardWidthMultipliedByBoardHeight() {
-        int expectedTotalCells = boardWidth * boardHeight;
+    public void When_CreatingNewBoard_Then_NumberOfCellsIsEqualToBoardWidthMultipliedByBoardHeight() {
         Board board = new Board(boardWidth, boardHeight, Collections.emptyList());
 
-        assertEquals(expectedTotalCells, board.getCells().size());
+        int expected = boardWidth * boardHeight;
+        int actual = board.getCells().size();
+        assertEquals(expected, actual);
     }
 
     @Test
-    public void givenASpecificPosition_WhenCreatingNewBoard_ThatPositionIsOccupiedByLivingCell() {
+    public void Given_ASpecificPosition_When_CreatingNewBoard_Then_PositionIsOccupiedByLivingCell() {
         Board board = new Board(boardWidth, boardHeight, Collections.singletonList(testCellPosition));
 
         assertTrue(board.getCell(testCellPosition).isAlive());
     }
 
     @Test
-    public void givenNewBoard_WhenFindingNeighboursOfACell_BoardReturnsCellsInTheEightNeighbouringPositions() {
+    public void Given_NewBoard_When_FindingNeighboursOfACell_Then_ReturnsCellsInTheEightNeighbouringPositions() {
         Board board = new Board(boardWidth, boardHeight, Collections.emptyList());
-
         Cell testCell = board.getCell(testCellPosition);
-        Cell[] neighbours = board.getNeighbours(testCell);
 
+        Cell[] neighbours = board.getNeighbours(testCell);
         List<Coordinates> positionsOfNeighbours = getCellPositions(board, neighbours);
+
         assertEquals(positionsOfAllTestCellsNeighbours, positionsOfNeighbours);
     }
 
     @Test
-    public void givenACell_WhenChangingStateOfItsNeighbours_BoardReturnsChangedNeighbours() {
+    public void Given_ANeighboursStateHasChanged_When_FindingACellsNeighbours_Then_ReturnsUpdatedNeighbours() {
         Board board = new Board(boardWidth, boardHeight, Collections.emptyList());
-
+        Cell testCell = board.getCell(testCellPosition);
         board.getCell(positionOfTestCellNeighbour).revive();
 
-        Cell testCell = board.getCell(testCellPosition);
         Cell[] neighbours = board.getNeighbours(testCell);
         int numberOfLivingNeighbours = countLivingCells(neighbours);
 

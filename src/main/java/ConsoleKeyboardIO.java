@@ -3,14 +3,13 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-public class ConsoleKeyboardIO implements IO {
+public class ConsoleKeyboardIO {
     private Scanner scanner;
 
     public ConsoleKeyboardIO() {
         this.scanner = new Scanner(System.in);
     }
 
-    @Override
     public int getBoardHeight() {
         System.out.println("What is the height of the World (in cells)? Please provide a whole number.");
         return getInteger();
@@ -28,13 +27,11 @@ public class ConsoleKeyboardIO implements IO {
         return getInteger();
     }
 
-    @Override
     public int getBoardWidth() {
         System.out.println("What is the width of the World (in cells)? Please provide a whole number.");
         return getInteger();
     }
 
-    @Override
     public List<Coordinates> getPositionsOfLivingCells() {
         List<Coordinates> positions = new ArrayList<>();
         System.out.println("What are the positions of the (initially) living cells?");
@@ -62,24 +59,20 @@ public class ConsoleKeyboardIO implements IO {
         return positions;
     }
 
-    @Override
     public int getLengthOfSimulation() {
         System.out.println("How long would you like the simulation to run? Please enter the number of 'game ticks' as a whole number.");
         return getInteger();
     }
 
-    @Override
     public void printWelcomeMessageAndRules() {
         System.out.println("Welcome to Conway's Game of Life!");
         System.out.println("Some details are required to set the initial state of the World.");
     }
 
-    @Override
     public void printBoard(Board board) {
         System.out.println(board);
     }
 
-    @Override
     public void clearDisplay() {
         System.out.print("\033[H\033[2J");
     }

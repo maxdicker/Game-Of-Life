@@ -34,67 +34,67 @@ public class BoardModifierTest {
 
     @Test
     public void givenABoardWithOscillatingPattern_WhenBoardIsManipulated_BoardShouldResembleOscillator() {
-        BoardModifier controller = new BoardModifier();
+        BoardModifier modifier = new BoardModifier();
         Board testBoard = new Board(boardWidth, boardHeight, OscillatorPatternA);
 
-        testBoard = controller.nextState(testBoard);
+        testBoard = modifier.nextState(testBoard);
 
         Board expectedBoard = new Board(boardWidth, boardHeight, OscillatorPatternB);
         assertEquals(expectedBoard, testBoard);
     }
 
     @Test
-    public void givenLivingCellWithLessThanTwoLivingNeighbours_WhenBoardIsManipulated_CellShouldDie() {
-        BoardModifier controller = new BoardModifier();
+    public void Given_LivingCellWithLessThanTwoLivingNeighbours_When_BoardIsModified_Then_CellDies() {
+        BoardModifier modifier = new BoardModifier();
         Board board = new Board(boardWidth, boardHeight, positionOfTestCellAndOneNeighbour);
 
-        board = controller.nextState(board);
-        Cell cell = board.getCell(testCellPosition);
+        board = modifier.nextState(board);
+        Cell testCell = board.getCell(testCellPosition);
 
-        assertFalse(cell.isAlive());
+        assertFalse(testCell.isAlive());
     }
 
     @Test
-    public void givenLivingCellWithMoreThanThreeLivingNeighbours_WhenBoardIsManipulated_CellShouldDie() {
-        BoardModifier controller = new BoardModifier();
+    public void Given_LivingCellWithMoreThanThreeLivingNeighbours_When_BoardIsModified_Then_CellDies() {
+        BoardModifier modifier = new BoardModifier();
         Board board = new Board(boardWidth, boardHeight, positionsOfTestCellAndFourNeighbours);
 
-        board = controller.nextState(board);
-        Cell cell = board.getCell(testCellPosition);
+        board = modifier.nextState(board);
+        Cell testCell = board.getCell(testCellPosition);
 
-        assertFalse(cell.isAlive());
+        assertFalse(testCell.isAlive());
     }
 
     @Test
-    public void givenLivingCellWithTwoLivingNeighbours_WhenBoardIsManipulated_CellShouldStillBeAlive() {
-        BoardModifier controller = new BoardModifier();
+    public void Given_LivingCellWithTwoLivingNeighbours_When_BoardIsModified_Then_CellIsStillAlive() {
+        BoardModifier modifier = new BoardModifier();
         Board board = new Board(boardWidth, boardHeight, positionsOfTestCellAndTwoNeighbours);
 
-        board = controller.nextState(board);
-        Cell cell = board.getCell(testCellPosition);
+        board = modifier.nextState(board);
+        Cell testCell = board.getCell(testCellPosition);
 
-        assertTrue(cell.isAlive());
+        assertTrue(testCell.isAlive());
     }
 
     @Test
-    public void givenLivingCellWithThreeLivingNeighbours_WhenBoardIsManipulated_CellShouldStillBeAlive() {
-        BoardModifier controller = new BoardModifier();
+    public void Given_LivingCellWithThreeLivingNeighbours_When_BoardIsModified_Then_CellIsStillAlive() {
+        BoardModifier modifier = new BoardModifier();
         Board board = new Board(boardWidth, boardHeight, positionsOfTestCellAndThreeNeighbours);
 
-        board = controller.nextState(board);
-        Cell cell = board.getCell(testCellPosition);
+        board = modifier.nextState(board);
+        Cell testCell = board.getCell(testCellPosition);
 
-        assertTrue(cell.isAlive());
+        assertTrue(testCell.isAlive());
     }
 
     @Test
-    public void givenDeadCellWithExactlyThreeLivingNeighbours_WhenBoardIsManipulated_CellShouldBeRevived() {
-        BoardModifier controller = new BoardModifier();
+    public void Given_DeadCellWithExactlyThreeLivingNeighbours_When_BoardIsModified_Then_CellIsRevived() {
+        BoardModifier modifier = new BoardModifier();
         Board board = new Board(boardWidth, boardHeight, positionsOfThreeTestCellNeighbours);
 
-        board = controller.nextState(board);
-        Cell cell = board.getCell(testCellPosition);
+        board = modifier.nextState(board);
+        Cell testCell = board.getCell(testCellPosition);
 
-        assertTrue(cell.isAlive());
+        assertTrue(testCell.isAlive());
     }
 }
