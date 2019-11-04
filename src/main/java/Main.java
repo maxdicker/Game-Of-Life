@@ -1,8 +1,8 @@
 public class Main {
 
     public static void main(String[] args) {
-        IO io = new ConsoleKeyboardIO();
-        Game game = new Game(io);
+        Input input = new UserInput();
+        Game game = new Game(input);
         game.run();
     }
 }

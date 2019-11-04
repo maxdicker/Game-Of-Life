@@ -1,13 +1,14 @@
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
-import java.util.Scanner;
 
-public class ConsoleKeyboardIO {
-    private Scanner scanner;
+public class UserInput {
+    private Input in;
+    private Output out;
 
-    public ConsoleKeyboardIO() {
-        this.scanner = new Scanner(System.in);
+    public UserInput(Input in, Output out) {
+        this.in = in;
+        this.out = out;
     }
 
     public int getBoardHeight() {
@@ -41,7 +42,7 @@ public class ConsoleKeyboardIO {
         String input = "";
 
         while (!input.equals("Q")) {
-            input = scanner.nextLine();
+            input = in.readUserInput();
 
             if (input.matches("[0-9]+\\s[0-9]+")) {
                 String[] inputArr = input.split("\\s");
@@ -52,7 +53,7 @@ public class ConsoleKeyboardIO {
                     positions.add(new Coordinates(x, y));
                 } catch (InputMismatchException e) {
                     System.out.println("Please provide integers in the required format only.");
-                    scanner.nextLine();
+                    in.readUserInput();
                 }
             }
         }
