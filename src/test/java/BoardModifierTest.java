@@ -37,7 +37,7 @@ public class BoardModifierTest {
         BoardModifier controller = new BoardModifier();
         Board testBoard = new Board(boardWidth, boardHeight, OscillatorPatternA);
 
-        testBoard = controller.nextGeneration(testBoard);
+        testBoard = controller.nextState(testBoard);
 
         Board expectedBoard = new Board(boardWidth, boardHeight, OscillatorPatternB);
         assertEquals(expectedBoard, testBoard);
@@ -48,7 +48,7 @@ public class BoardModifierTest {
         BoardModifier controller = new BoardModifier();
         Board board = new Board(boardWidth, boardHeight, positionOfTestCellAndOneNeighbour);
 
-        board = controller.nextGeneration(board);
+        board = controller.nextState(board);
         Cell cell = board.getCell(testCellPosition);
 
         assertFalse(cell.isAlive());
@@ -59,7 +59,7 @@ public class BoardModifierTest {
         BoardModifier controller = new BoardModifier();
         Board board = new Board(boardWidth, boardHeight, positionsOfTestCellAndFourNeighbours);
 
-        board = controller.nextGeneration(board);
+        board = controller.nextState(board);
         Cell cell = board.getCell(testCellPosition);
 
         assertFalse(cell.isAlive());
@@ -70,7 +70,7 @@ public class BoardModifierTest {
         BoardModifier controller = new BoardModifier();
         Board board = new Board(boardWidth, boardHeight, positionsOfTestCellAndTwoNeighbours);
 
-        board = controller.nextGeneration(board);
+        board = controller.nextState(board);
         Cell cell = board.getCell(testCellPosition);
 
         assertTrue(cell.isAlive());
@@ -81,7 +81,7 @@ public class BoardModifierTest {
         BoardModifier controller = new BoardModifier();
         Board board = new Board(boardWidth, boardHeight, positionsOfTestCellAndThreeNeighbours);
 
-        board = controller.nextGeneration(board);
+        board = controller.nextState(board);
         Cell cell = board.getCell(testCellPosition);
 
         assertTrue(cell.isAlive());
@@ -92,7 +92,7 @@ public class BoardModifierTest {
         BoardModifier controller = new BoardModifier();
         Board board = new Board(boardWidth, boardHeight, positionsOfThreeTestCellNeighbours);
 
-        board = controller.nextGeneration(board);
+        board = controller.nextState(board);
         Cell cell = board.getCell(testCellPosition);
 
         assertTrue(cell.isAlive());

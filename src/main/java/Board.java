@@ -72,6 +72,14 @@ public class Board {
         return neighboursByCell.get(cell);
     }
 
+    public void killCell(Cell cell) {
+        cell.kill();
+    }
+
+    public void reviveCell(Cell cell) {
+        cell.revive();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

@@ -22,7 +22,7 @@ public class Game {
         for (int generation = 0; generation < simulationLength; generation++) {
             io.clearDisplay();
             io.printBoard(board);
-            board = controller.nextGeneration(board);
+            board = controller.nextState(board);
             try {
                 Thread.sleep(750);
             } catch (InterruptedException e) {

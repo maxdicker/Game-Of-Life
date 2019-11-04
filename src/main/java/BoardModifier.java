@@ -1,27 +1,23 @@
-import java.util.List;
-
 public class BoardModifier {
     private CellStateDeterminer determiner = new CellStateDeterminer();
 
-    public Board nextGeneration(Board board) {
-        BoardInstruction instruction = determiner.determineBoardChanges(board);
+    public Board nextState(Board board) {
+        BoardInstructions instructions = determiner.determineBoardChanges(board);
 
-        killCells(instruction.getCellsToKill());
-        reviveCells(instruction.getCellsToRevive());
+        modifyBoard(board, instructions);
 
         return board;
     }
 
-    private void reviveCells(List<Cell> cellsToRevive) {
-        for (Cell cell : cellsToRevive) {
-            cell.revive();
+    private void modifyBoard(Board board, BoardInstructions instructions) {
+        for (Cell cell : instructions.getCellsToKill()) {
+            board.killCell(cell);
         }
-    }
 
-    private void killCells(List<Cell> cellsToKill) {
-        for (Cell cell : cellsToKill) {
-            cell.kill();
+        for (Cell cell : instructions.getCellsToRevive()) {
+            board.reviveCell(cell);
         }
+
     }
 
 }

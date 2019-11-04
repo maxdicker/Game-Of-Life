@@ -1,20 +1,20 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class BoardInstruction {
+public class BoardInstructions {
     private List<Cell> cellsToKill;
     private List<Cell> cellsToRevive;
 
-    public BoardInstruction() {
+    public BoardInstructions() {
         this.cellsToKill = new ArrayList<>();
         this.cellsToRevive = new ArrayList<>();
     }
 
-    public void addKillAction(Cell cell) {
+    public void addKillInstruction(Cell cell) {
         cellsToKill.add(cell);
     }
 
-    public void addReviveAction(Cell cell) {
+    public void addReviveInstruction(Cell cell) {
         cellsToRevive.add(cell);
     }
 
