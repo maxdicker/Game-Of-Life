@@ -2,11 +2,11 @@ import java.util.List;
 
 public class Game {
     private IO io;
-    private BoardController controller;
+    private BoardModifier controller;
 
     public Game(IO io) {
         this.io = io;
-        this.controller = new BoardController();
+        this.controller = new BoardModifier();
     }
 
     public void run() {

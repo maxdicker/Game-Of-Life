@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class BoardAction {
+public class BoardInstruction {
     private List<Cell> cellsToKill;
     private List<Cell> cellsToRevive;
 
-    public BoardAction() {
+    public BoardInstruction() {
         this.cellsToKill = new ArrayList<>();
         this.cellsToRevive = new ArrayList<>();
     }

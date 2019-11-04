@@ -1,10 +1,10 @@
-public class BoardRuler {
+public class CellStateDeterminer {
     private final int NUM_LIVE_NEIGHBOURS_TO_REVIVE_CELL = 3;
     private final int MIN_NUM_OF_LIVE_NEIGHBOURS = 2;
     private final int MAX_NUM_OF_LIVE_NEIGHBOURS = 3;
 
-    public BoardAction determineBoardAction(Board board) {
-        BoardAction action = new BoardAction();
+    public BoardInstruction determineBoardChanges(Board board) {
+        BoardInstruction action = new BoardInstruction();
 
         for (Cell cell : board.getCells()) {
             int numberOfLivingNeighbours = countLivingNeighbours(board, cell);

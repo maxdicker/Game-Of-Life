@@ -5,7 +5,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class BoardControllerTest {
+public class BoardModifierTest {
     private int boardWidth = 5;
     private int boardHeight = 5;
 
@@ -34,7 +34,7 @@ public class BoardControllerTest {
 
     @Test
     public void givenABoardWithOscillatingPattern_WhenBoardIsManipulated_BoardShouldResembleOscillator() {
-        BoardController controller = new BoardController();
+        BoardModifier controller = new BoardModifier();
         Board testBoard = new Board(boardWidth, boardHeight, OscillatorPatternA);
 
         testBoard = controller.nextGeneration(testBoard);
@@ -45,7 +45,7 @@ public class BoardControllerTest {
 
     @Test
     public void givenLivingCellWithLessThanTwoLivingNeighbours_WhenBoardIsManipulated_CellShouldDie() {
-        BoardController controller = new BoardController();
+        BoardModifier controller = new BoardModifier();
         Board board = new Board(boardWidth, boardHeight, positionOfTestCellAndOneNeighbour);
 
         board = controller.nextGeneration(board);
@@ -56,7 +56,7 @@ public class BoardControllerTest {
 
     @Test
     public void givenLivingCellWithMoreThanThreeLivingNeighbours_WhenBoardIsManipulated_CellShouldDie() {
-        BoardController controller = new BoardController();
+        BoardModifier controller = new BoardModifier();
         Board board = new Board(boardWidth, boardHeight, positionsOfTestCellAndFourNeighbours);
 
         board = controller.nextGeneration(board);
@@ -67,7 +67,7 @@ public class BoardControllerTest {
 
     @Test
     public void givenLivingCellWithTwoLivingNeighbours_WhenBoardIsManipulated_CellShouldStillBeAlive() {
-        BoardController controller = new BoardController();
+        BoardModifier controller = new BoardModifier();
         Board board = new Board(boardWidth, boardHeight, positionsOfTestCellAndTwoNeighbours);
 
         board = controller.nextGeneration(board);
@@ -78,7 +78,7 @@ public class BoardControllerTest {
 
     @Test
     public void givenLivingCellWithThreeLivingNeighbours_WhenBoardIsManipulated_CellShouldStillBeAlive() {
-        BoardController controller = new BoardController();
+        BoardModifier controller = new BoardModifier();
         Board board = new Board(boardWidth, boardHeight, positionsOfTestCellAndThreeNeighbours);
 
         board = controller.nextGeneration(board);
@@ -89,7 +89,7 @@ public class BoardControllerTest {
 
     @Test
     public void givenDeadCellWithExactlyThreeLivingNeighbours_WhenBoardIsManipulated_CellShouldBeRevived() {
-        BoardController controller = new BoardController();
+        BoardModifier controller = new BoardModifier();
         Board board = new Board(boardWidth, boardHeight, positionsOfThreeTestCellNeighbours);
 
         board = controller.nextGeneration(board);

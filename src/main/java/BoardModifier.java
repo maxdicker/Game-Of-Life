@@ -1,10 +1,14 @@
 import java.util.List;
 
-public class BoardActioner {
+public class BoardModifier {
+    private CellStateDeterminer determiner = new CellStateDeterminer();
 
-    public Board transformBoard(Board board, BoardAction action) {
-        killCells(action.getCellsToKill());
-        reviveCells(action.getCellsToRevive());
+    public Board nextGeneration(Board board) {
+        BoardInstruction instruction = determiner.determineBoardChanges(board);
+
+        killCells(instruction.getCellsToKill());
+        reviveCells(instruction.getCellsToRevive());
+
         return board;
     }
 
