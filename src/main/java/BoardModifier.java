@@ -14,13 +14,13 @@ public class BoardModifier {
 
     private void reviveCells(List<Cell> cellsToRevive) {
         for (Cell cell : cellsToRevive) {
-            cell.setState(true);
+            cell.revive();
         }
     }
 
     private void killCells(List<Cell> cellsToKill) {
         for (Cell cell : cellsToKill) {
-            cell.setState(false);
+            cell.kill();
         }
     }
 

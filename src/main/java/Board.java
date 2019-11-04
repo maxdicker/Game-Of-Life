@@ -23,7 +23,7 @@ public class Board {
         }
 
         for (Coordinates position : positionsOfLivingCells) {
-            getCell(position).setState(true);
+            getCell(position).revive();
         }
     }
 

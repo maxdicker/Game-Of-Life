@@ -9,8 +9,12 @@ public class Cell {
         return alive;
     }
 
-    public void setState(boolean isAlive) {
-        this.alive = isAlive;
+    public void kill() {
+        this.alive = false;
+    }
+
+    public void revive() {
+        this.alive = true;
     }
 
     @Override

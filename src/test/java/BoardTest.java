@@ -48,7 +48,7 @@ public class BoardTest {
     public void givenACell_WhenChangingStateOfItsNeighbours_BoardReturnsChangedNeighbours() {
         Board board = new Board(boardWidth, boardHeight, Collections.emptyList());
 
-        board.getCell(positionOfTestCellNeighbour).setState(true);
+        board.getCell(positionOfTestCellNeighbour).revive();
 
         Cell testCell = board.getCell(testCellPosition);
         Cell[] neighbours = board.getNeighbours(testCell);
