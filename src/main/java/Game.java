@@ -1,16 +1,18 @@
 import java.util.List;
 
 public class Game {
-    private Input input;
+    private ValidUserInput input;
+    private GameDisplay display;
     private BoardModifier controller;
 
-    public Game(Input input) {
+    public Game(ValidUserInput input, GameDisplay display) {
         this.input = input;
+        this.display = display;
         this.controller = new BoardModifier();
     }
 
     public void run() {
-        input.printWelcomeMessageAndRules();
+        display.printWelcomeMessageAndRules();
 
         int width = input.getBoardWidth();
         int height = input.getBoardHeight();
@@ -20,8 +22,8 @@ public class Game {
         int simulationLength = input.getLengthOfSimulation();
 
         for (int generation = 0; generation < simulationLength; generation++) {
-            input.clearDisplay();
-            input.printBoard(board);
+            display.clearDisplay();
+            display.printBoard(board);
             board = controller.nextState(board);
             try {
                 Thread.sleep(750);
