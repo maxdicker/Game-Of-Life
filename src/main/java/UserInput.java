@@ -9,12 +9,7 @@ public class UserInput {
         this.io = io;
     }
 
-    public int getBoardHeight() {
-        io.displayOutput("What is the height of the World (in cells)? Please provide a whole number.");
-        return getInteger();
-    }
-
-    private int getInteger() {
+    public int getInteger() {
         String input = io.readUserInput();
 
         try {
@@ -23,11 +18,6 @@ public class UserInput {
             io.displayOutput("Please provide an integer.");
         }
 
-        return getInteger();
-    }
-
-    public int getBoardWidth() {
-        io.displayOutput("What is the width of the World (in cells)? Please provide a whole number.");
         return getInteger();
     }
 
@@ -58,21 +48,4 @@ public class UserInput {
         return positions;
     }
 
-    public int getLengthOfSimulation() {
-        io.displayOutput("How long would you like the simulation to run? Please enter the number of 'game ticks' as a whole number.");
-        return getInteger();
-    }
-
-    public void printWelcomeMessageAndRules() {
-        io.displayOutput("Welcome to Conway's Game of Life!");
-        io.displayOutput("Some details are required to set the initial state of the World.");
-    }
-
-    public void printBoard(Board board) {
-        io.displayOutput(board.toString());
-    }
-
-    public void clearDisplay() {
-        io.displayOutput("\033[H\033[2J");
-    }
 }

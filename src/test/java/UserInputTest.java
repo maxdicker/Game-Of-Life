@@ -8,52 +8,27 @@ import static org.junit.Assert.*;
 public class UserInputTest {
 
     @Test
-    public void Given_InputIsInteger_When_GettingBoardHeight_Then_ReturnsHeightAsInteger() {
+    public void Given_InputIsAnInteger_When_GettingIntegerFromUser_Then_ReturnsInteger() {
         String stubInput = "5";
         IO stubIO = new StubIO(stubInput);
         UserInput input = new UserInput(stubIO);
 
-        int actual = input.getBoardHeight();
+        int actual = input.getInteger();
 
         int expected = Integer.parseInt(stubInput);
         assertEquals(expected, actual);
     }
 
     @Test
-    public void Given_InputIsNotInteger_When_GettingBoardHeight_Then_RetrievesMoreInputUntilIntegerFound() {
-        String height = "5";
-        List<String> stubInput = Arrays.asList("", "foo", height);
+    public void Given_InputIsNotInteger_When_GettingIntegerFromUser_Then_RetrievesMoreInputUntilIntegerFound() {
+        String five = "5";
+        List<String> stubInput = Arrays.asList("", "foo", five);
         IO stub = new StubIO(stubInput);
         UserInput input = new UserInput(stub);
 
-        int actual = input.getBoardHeight();
+        int actual = input.getInteger();
 
-        int expected = Integer.parseInt(height);
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    public void Given_InputIsInteger_When_GettingBoardWidth_Then_ReturnsWidthAsInteger() {
-        String stubInput = "5";
-        IO stubIO = new StubIO(stubInput);
-        UserInput input = new UserInput(stubIO);
-
-        int actual = input.getBoardWidth();
-
-        int expected = Integer.parseInt(stubInput);
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    public void Given_InputIsNotInteger_When_GettingBoardWidth_Then_RetrievesMoreInputUntilIntegerFound() {
-        String width = "5";
-        List<String> stubInput = Arrays.asList("", "foo", width);
-        IO stub = new StubIO(stubInput);
-        UserInput input = new UserInput(stub);
-
-        int actual = input.getBoardWidth();
-
-        int expected = Integer.parseInt(width);
+        int expected = Integer.parseInt(five);
         assertEquals(expected, actual);
     }
 
