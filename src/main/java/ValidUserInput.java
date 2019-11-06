@@ -7,7 +7,8 @@ public class ValidUserInput {
 
     private final String BOARD_WIDTH_PROMPT = "What is the width of the World (in cells)? Please provide a whole number.\n";
     private final String BOARD_HEIGHT_PROMPT = "What is the height of the World (in cells)? Please provide a whole number.\n";
-    private final String INVALID_BOARD_DIMENSION_MESSAGE = "The size you specified is not within the required range. Please try again.\n";
+    private final String GAME_LENGTH_PROMPT = "How long would you like the simulation to run (i.e. number of 'game ticks')? Please provide a whole number.\n";
+    private final String NUMBER_OUTSIDE_RANGE_MESSAGE = "The number you specified is not within the required range. Please try again.\n";
 
     public ValidUserInput(IO io) {
         this.io = io;
@@ -16,31 +17,39 @@ public class ValidUserInput {
 
     public int getBoardWidth(int minWidth, int maxWidth) {
         io.displayOutput(BOARD_WIDTH_PROMPT);
-        displayBoundariesToUser(minWidth, maxWidth);
-        return getValidBoardDimension(minWidth, maxWidth);
-    }
-
-    private void displayBoundariesToUser(int min, int max) {
-        io.displayOutput("The minimum and maximum for this field are " + min + " and " + max + ", respectively.\n");
-    }
-
-    private int getValidBoardDimension(int min, int max) {
-        int size = gatherer.getIntegerFromUser();
-
-        if (size >= min && size <= max) {
-            return size;
-        } else {
-            io.displayOutput(INVALID_BOARD_DIMENSION_MESSAGE);
-        }
-
-        return getValidBoardDimension(min, max);
+        displayFieldBoundariesToUser(minWidth, maxWidth);
+        return getIntegerWithinRange(minWidth, maxWidth);
     }
 
     public int getBoardHeight(int minHeight, int maxHeight) {
         io.displayOutput(BOARD_HEIGHT_PROMPT);
-        displayBoundariesToUser(minHeight, maxHeight);
-        return getValidBoardDimension(minHeight, maxHeight);
+        displayFieldBoundariesToUser(minHeight, maxHeight);
+        return getIntegerWithinRange(minHeight, maxHeight);
     }
+
+    public int getLengthOfSimulation(int minLength, int maxLength) {
+        io.displayOutput(GAME_LENGTH_PROMPT);
+        displayFieldBoundariesToUser(minLength, maxLength);
+        return getIntegerWithinRange(minLength, maxLength);
+    }
+
+    private void displayFieldBoundariesToUser(int min, int max) {
+        io.displayOutput("The minimum and maximum for this field are " + min + " and " + max + ", respectively.\n");
+    }
+
+    private int getIntegerWithinRange(int min, int max) {
+        int integer = gatherer.getIntegerFromUser();
+
+        if (integer >= min && integer <= max) {
+            return integer;
+        } else {
+            io.displayOutput(NUMBER_OUTSIDE_RANGE_MESSAGE);
+        }
+
+        return getIntegerWithinRange(min, max);
+    }
+
+
 
     public List<Coordinates> getPositionsOfLivingCells() {
         io.displayOutput("What are the positions of the (initially) living cells?");
@@ -50,8 +59,5 @@ public class ValidUserInput {
         return Collections.emptyList();
     }
 
-    public int getLengthOfSimulation() {
-        io.displayOutput("How long would you like the simulation to run? Please enter the number of 'game ticks' as a whole number.");
-        return gatherer.getIntegerFromUser();
-    }
+
 }

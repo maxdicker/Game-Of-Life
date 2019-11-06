@@ -19,7 +19,7 @@ public class Game {
         List<Coordinates> positions = input.getPositionsOfLivingCells();
         Board board = new Board(width, height, positions);
 
-        int simulationLength = input.getLengthOfSimulation();
+        int simulationLength = input.getLengthOfSimulation(0, 100);
 
         for (int generation = 0; generation < simulationLength; generation++) {
             display.clearDisplay();

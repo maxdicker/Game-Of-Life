@@ -100,6 +100,19 @@ public class UserInputTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    public void Given_InputOutsideRange_When_GettingSimulationLength_Then_ValidatorRetrievesMoreInputUntilCorrectInputFound() {
+        String five = "5";
+        List<String> stubInput = Arrays.asList("-1", "1000", "foo", five);
+        IO stubIO = new StubIO(stubInput);
+        ValidUserInput input = new ValidUserInput(stubIO);
+
+        int actual = input.getLengthOfSimulation(0, 100);
+
+        int expected = Integer.parseInt(five);
+        assertEquals(expected, actual);
+    }
+
     //What happens when excessive spaces
     //What happens when extra delimiter
     //what about duplicate coordinates
