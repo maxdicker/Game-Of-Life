@@ -14,7 +14,7 @@ public class Game {
     public void run() {
         display.printWelcomeMessageAndRules();
 
-        int width = input.getBoardWidth();
+        int width = input.getBoardWidth(2, 100);
         int height = input.getBoardHeight();
         List<Coordinates> positions = input.getPositionsOfLivingCells();
         Board board = new Board(width, height, positions);

@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserInput {
+public class InputGatherer {
     private IO io;
 
     private final String XY_DELIMITER = "\\s";
@@ -9,10 +9,10 @@ public class UserInput {
     private final String SINGLE_COORDINATES_PATTERN = "\\d+" + XY_DELIMITER + "\\d+";
     private final String COORDINATES_INPUT_PATTERN = SINGLE_COORDINATES_PATTERN + "|" + SINGLE_COORDINATES_PATTERN + "(" + COORDINATES_DELIMITER + SINGLE_COORDINATES_PATTERN + ")+";
 
-    private final String INVALID_INTEGER_MESSAGE = "An integer is required. Please try again.";
-    private final String INVALID_COORDINATES_FORMAT_MESSAGE = "Coordinates must be entered in the specified format. Please try again.";
+    private final String INVALID_INTEGER_MESSAGE = "An integer is required. Please try again.\n";
+    private final String INVALID_COORDINATES_FORMAT_MESSAGE = "Coordinates must be entered in the specified format. Please try again.\n";
 
-    public UserInput(IO io) {
+    public InputGatherer(IO io) {
         this.io = io;
     }
 
