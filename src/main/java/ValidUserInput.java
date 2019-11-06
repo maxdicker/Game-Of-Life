@@ -6,7 +6,8 @@ public class ValidUserInput {
     private IO io;
 
     private final String BOARD_WIDTH_PROMPT = "What is the width of the World (in cells)? Please provide a whole number.\n";
-    private final String INVALID_BOARD_DIMENSION_MESSAGE = "The World dimension you specified is not within the required range. Please try again.\n";
+    private final String BOARD_HEIGHT_PROMPT = "What is the height of the World (in cells)? Please provide a whole number.\n";
+    private final String INVALID_BOARD_DIMENSION_MESSAGE = "The size you specified is not within the required range. Please try again.\n";
 
     public ValidUserInput(IO io) {
         this.io = io;
@@ -15,20 +16,30 @@ public class ValidUserInput {
 
     public int getBoardWidth(int minWidth, int maxWidth) {
         io.displayOutput(BOARD_WIDTH_PROMPT);
-        int width = gatherer.getIntegerFromUser();
+        displayBoundariesToUser(minWidth, maxWidth);
+        return getValidBoardDimension(minWidth, maxWidth);
+    }
 
-        if (width >= minWidth && width <= maxWidth) {
-            return width;
+    private void displayBoundariesToUser(int min, int max) {
+        io.displayOutput("The minimum and maximum for this field are " + min + " and " + max + ", respectively.\n");
+    }
+
+    private int getValidBoardDimension(int min, int max) {
+        int size = gatherer.getIntegerFromUser();
+
+        if (size >= min && size <= max) {
+            return size;
         } else {
             io.displayOutput(INVALID_BOARD_DIMENSION_MESSAGE);
         }
 
-        return getBoardWidth(minWidth, maxWidth);
+        return getValidBoardDimension(min, max);
     }
 
-    public int getBoardHeight() {
-        io.displayOutput("What is the height of the World (in cells)? Please provide a whole number.");
-        return gatherer.getIntegerFromUser();
+    public int getBoardHeight(int minHeight, int maxHeight) {
+        io.displayOutput(BOARD_HEIGHT_PROMPT);
+        displayBoundariesToUser(minHeight, maxHeight);
+        return getValidBoardDimension(minHeight, maxHeight);
     }
 
     public List<Coordinates> getPositionsOfLivingCells() {
