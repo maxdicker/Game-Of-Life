@@ -5,9 +5,12 @@ public class UserInput {
     private IO io;
 
     private final String XY_DELIMITER = "\\s";
-    private final String COORDINATE_DELIMITER = ",";
-    private final String SINGLE_COORDINATE_PATTERN = "\\d+" + XY_DELIMITER + "\\d+";
-    private final String COORDINATES_INPUT_PATTERN = SINGLE_COORDINATE_PATTERN + "|" + SINGLE_COORDINATE_PATTERN + "(" + COORDINATE_DELIMITER + SINGLE_COORDINATE_PATTERN + ")+";
+    private final String COORDINATES_DELIMITER = ",";
+    private final String SINGLE_COORDINATES_PATTERN = "\\d+" + XY_DELIMITER + "\\d+";
+    private final String COORDINATES_INPUT_PATTERN = SINGLE_COORDINATES_PATTERN + "|" + SINGLE_COORDINATES_PATTERN + "(" + COORDINATES_DELIMITER + SINGLE_COORDINATES_PATTERN + ")+";
+
+    private final String INVALID_INTEGER_MESSAGE = "An integer is required. Please try again.";
+    private final String INVALID_COORDINATES_FORMAT_MESSAGE = "Coordinates must be entered in the specified format. Please try again.";
 
     public UserInput(IO io) {
         this.io = io;
@@ -19,33 +22,38 @@ public class UserInput {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            io.displayOutput("An integer is required. Please try again.");
+            io.displayOutput(INVALID_INTEGER_MESSAGE);
         }
 
         return getIntegerFromUser();
     }
 
     public List<Coordinates> getCoordinatesFromUser() {
-        List<Coordinates> result = new ArrayList<>();
         String input = io.readUserInput();
 
         if (input.matches(COORDINATES_INPUT_PATTERN)) {
-            String[] coordinatesArray = input.split(COORDINATE_DELIMITER);
-
-            for (String coordinates : coordinatesArray) {
-                String[] coordinateArray = coordinates.split(XY_DELIMITER);
-                int x = Integer.parseInt(coordinateArray[0]);
-                int y = Integer.parseInt(coordinateArray[1]);
-
-                result.add(new Coordinates(x, y));
-            }
-
-            return result;
+            return extractCoordinatesListFromString(input);
         } else {
-            io.displayOutput("Coordinates must be entered in the specified format. Please try again.");
+            io.displayOutput(INVALID_COORDINATES_FORMAT_MESSAGE);
         }
 
         return getCoordinatesFromUser();
+    }
+
+    private List<Coordinates> extractCoordinatesListFromString(String string) {
+        List<Coordinates> result = new ArrayList<>();
+        String[] coordinatesArray = string.split(COORDINATES_DELIMITER);
+
+        for (String coordinates : coordinatesArray) {
+            result.add(createCoordinatesFromString(coordinates));
+        }
+
+        return result;
+    }
+
+    private Coordinates createCoordinatesFromString(String string) {
+        String[] coordinateArray = string.split(XY_DELIMITER);
+        return new Coordinates(Integer.parseInt(coordinateArray[0]), Integer.parseInt(coordinateArray[1]));
     }
 
 }
