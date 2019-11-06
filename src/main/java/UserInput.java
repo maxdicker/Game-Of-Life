@@ -19,7 +19,7 @@ public class UserInput {
 
         try {
             return Integer.parseInt(input);
-        } catch (InputMismatchException e) {
+        } catch (NumberFormatException e) {
             io.displayOutput("Please provide an integer.");
         }
 
