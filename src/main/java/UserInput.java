@@ -4,6 +4,7 @@ import java.util.List;
 
 public class UserInput {
     private IO io;
+    private String standardFormat = "[0-9]+\\s[0-9]+";
 
     public UserInput(IO io) {
         this.io = io;
@@ -23,17 +24,12 @@ public class UserInput {
 
     public List<Coordinates> getPositionsOfLivingCells() {
         List<Coordinates> positions = new ArrayList<>();
-        io.displayOutput("What are the positions of the (initially) living cells?");
-        io.displayOutput("Please enter their coordinates - number of cells right and down from the very top-left cell.");
-        io.displayOutput("Format: Amount right, followed by whitespace, then amount down.");
-        io.displayOutput("To stop providing locations, enter 'Q'.");
-        String input = "";
+        String input = io.readUserInput();
 
-        while (!input.equals("Q")) {
-            input = io.readUserInput();
-
-            if (input.matches("[0-9]+\\s[0-9]+")) {
-                String[] inputArr = input.split("\\s");
+        if (input.matches(standardFormat + "|" + standardFormat + "(," + standardFormat + ")+")) {
+            String[] inputArrr = input.split(",");
+            for (String s : inputArrr) {
+                String[] inputArr = s.split("\\s");
 
                 try {
                     int x = Integer.parseInt(inputArr[0]);

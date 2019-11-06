@@ -21,6 +21,10 @@ public class ValidUserInput {
     }
 
     public List<Coordinates> getPositionsOfLivingCells() {
+        io.displayOutput("What are the positions of the (initially) living cells?");
+        io.displayOutput("Please enter their coordinates - number of cells right and down from the very top-left cell.");
+        io.displayOutput("Format: Amount right, followed by whitespace, then amount down.");
+        io.displayOutput("To stop providing locations, enter 'Q'.");
         return Collections.emptyList();
     }
 
