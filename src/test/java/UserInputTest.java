@@ -13,7 +13,7 @@ public class UserInputTest {
         IO stubIO = new StubIO(stubInput);
         UserInput input = new UserInput(stubIO);
 
-        int actual = input.getInteger();
+        int actual = input.getIntegerFromUser();
 
         int expected = Integer.parseInt(stubInput);
         assertEquals(expected, actual);
@@ -26,7 +26,7 @@ public class UserInputTest {
         IO stub = new StubIO(stubInput);
         UserInput input = new UserInput(stub);
 
-        int actual = input.getInteger();
+        int actual = input.getIntegerFromUser();
 
         int expected = Integer.parseInt(five);
         assertEquals(expected, actual);
@@ -38,7 +38,7 @@ public class UserInputTest {
         IO stub = new StubIO(stubInput);
         UserInput input = new UserInput(stub);
 
-        List<Coordinates> actual = input.getPositionsOfLivingCells();
+        List<Coordinates> actual = input.getCoordinatesFromUser();
 
         List<Coordinates> expected = Arrays.asList(new Coordinates(1, 2), new Coordinates(2, 2), new Coordinates(2, 3));
         assertEquals(expected, actual);

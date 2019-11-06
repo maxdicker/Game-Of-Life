@@ -12,12 +12,12 @@ public class ValidUserInput {
 
     public int getBoardWidth() {
         io.displayOutput("What is the width of the World (in cells)? Please provide a whole number.");
-        return input.getInteger();
+        return input.getIntegerFromUser();
     }
 
     public int getBoardHeight() {
         io.displayOutput("What is the height of the World (in cells)? Please provide a whole number.");
-        return input.getInteger();
+        return input.getIntegerFromUser();
     }
 
     public List<Coordinates> getPositionsOfLivingCells() {
@@ -30,6 +30,6 @@ public class ValidUserInput {
 
     public int getLengthOfSimulation() {
         io.displayOutput("How long would you like the simulation to run? Please enter the number of 'game ticks' as a whole number.");
-        return input.getInteger();
+        return input.getIntegerFromUser();
     }
 }
