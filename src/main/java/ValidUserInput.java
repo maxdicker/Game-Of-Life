@@ -43,13 +43,16 @@ public class ValidUserInput {
     private int getIntegerWithinRange(int min, int max) {
         int integer = gatherer.getIntegerFromUser();
 
-        if (integer >= min && integer <= max) {
+        if (numberInRange(integer, min, max)) {
             return integer;
-        } else {
-            io.displayOutput(NUMBER_OUTSIDE_RANGE_MESSAGE);
         }
 
+        io.displayOutput(NUMBER_OUTSIDE_RANGE_MESSAGE);
         return getIntegerWithinRange(min, max);
+    }
+
+    private boolean numberInRange(int number, int min, int max) {
+        return min <= number && number <= max;
     }
 
     public List<Coordinates> getPositionsOfLivingCells(Coordinates minBoundary, Coordinates maxBoundary) {
@@ -61,29 +64,25 @@ public class ValidUserInput {
     private List<Coordinates> getCoordinatesWithinRange(Coordinates min, Coordinates max) {
         List<Coordinates> positions = gatherer.getCoordinatesFromUser();
 
-        boolean allWithinRange = true;
-        for (Coordinates position : positions) {
-            if (position.compareTo(min) < 0 || position.compareTo(max) > 0) {
-                allWithinRange = false;
-                break;
-            }
-        }
-
-        if (allWithinRange) {
+        if (positionsInRange(positions, min, max)) {
             return positions;
-        } else {
-            io.displayOutput(COORDINATE_OUTSIDE_RANGE_MESSAGE);
         }
 
+        io.displayOutput(COORDINATE_OUTSIDE_RANGE_MESSAGE);
         return getCoordinatesWithinRange(min, max);
     }
 
-    private void displayCoordinateBoundariesToUser(Coordinates min, Coordinates max) {
-        io.displayOutput("The Coordinates must be between " + toString(min) + " and " + toString(max) + ".\n");
+    private boolean positionsInRange(List<Coordinates> positions, Coordinates min, Coordinates max) {
+        for (Coordinates position : positions) {
+            if (!(position.compareTo(min) >= 0 && position.compareTo(max) <= 0)) {
+                return false;
+            }
+        }
+        return true;
     }
 
-    private String toString(Coordinates position) {
-        return "(" + position.x + " " + position.y + ")";
+    private void displayCoordinateBoundariesToUser(Coordinates min, Coordinates max) {
+        io.displayOutput("The Coordinates must be between " + min.toString() + " and " + max.toString() + ".\n");
     }
 
 }

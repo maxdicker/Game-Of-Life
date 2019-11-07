@@ -27,4 +27,9 @@ public class Coordinates implements Comparable<Coordinates> {
         }
         return cmp;
     }
+
+    @Override
+    public String toString() {
+        return "(" + x + " " + y + ")";
+    }
 }
