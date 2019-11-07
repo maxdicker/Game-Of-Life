@@ -1,24 +1,31 @@
 public class GameDisplay {
+    private IO io;
 
-    public void printWelcomeMessageAndRules() {
+    public GameDisplay(IO io) {
+        this.io = io;
     }
 
-    public void clearDisplay() {
+    private void clearDisplay() {
+        io.displayOutput("\033[H\033[2J");
     }
 
     public void printBoard(Board board) {
+        clearDisplay();
+        int height = board.getHeight();
+        int width = board.getWidth();
+        StringBuilder string = new StringBuilder();
+
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                if (board.getCell(new Coordinates(x, y)).isAlive()) {
+                    string.append("\u25FC");
+                } else {
+                    string.append("\u25FB");
+                }
+            }
+            string.append("\n");
+        }
+        io.displayOutput(string.toString());
     }
 
-//    public void printWelcomeMessageAndRules() {
-//        io.displayOutput("Welcome to Conway's Game of Life!");
-//        io.displayOutput("Some details are required to set the initial state of the World.");
-//    }
-//
-//    public void printBoard(Board board) {
-//        io.displayOutput(board.toString());
-//    }
-//
-//    public void clearDisplay() {
-//        io.displayOutput("\033[H\033[2J");
-//    }
 }

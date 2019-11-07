@@ -80,6 +80,14 @@ public class Board {
         cell.revive();
     }
 
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -103,16 +111,4 @@ public class Board {
                 cellsEqual;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder string = new StringBuilder();
-
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
-                string.append(getCell(y*width + x));
-            }
-            string.append("\n");
-        }
-        return string.toString();
-    }
 }

@@ -12,8 +12,6 @@ public class Game {
     }
 
     public void run() {
-        display.printWelcomeMessageAndRules();
-
         int width = input.getBoardWidth(2, 100);
         int height = input.getBoardHeight(2, 100);
         List<Coordinates> positions = input.getPositionsOfLivingCells(new Coordinates(0,0), new Coordinates(width, height));
@@ -22,7 +20,6 @@ public class Game {
         int simulationLength = input.getLengthOfSimulation(0, 100);
 
         for (int generation = 0; generation < simulationLength; generation++) {
-            display.clearDisplay();
             display.printBoard(board);
             board = controller.nextState(board);
             try {

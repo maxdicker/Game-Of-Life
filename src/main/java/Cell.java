@@ -17,8 +17,4 @@ public class Cell {
         this.alive = true;
     }
 
-    @Override
-    public String toString() {
-        return alive ? "\u25FC" : "\u25FB";
-    }
 }
