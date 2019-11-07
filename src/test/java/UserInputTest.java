@@ -113,6 +113,21 @@ public class UserInputTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    public void Given_InputOutsideRange_When_GettingCoordinates_Then_ValidatorRetrievesMoreInputUntilCorrectInputFound() {
+        String correctlyFormattedInput = "1 2,2 2,2 3";
+        String YOutsideRange = "3 1000,4 4";
+        String XOutsideRange = "3 3,-1 4";
+        List<String> stubInput = Arrays.asList(YOutsideRange, XOutsideRange, correctlyFormattedInput);
+        IO stubIO = new StubIO(stubInput);
+        ValidUserInput input = new ValidUserInput(stubIO);
+
+        List<Coordinates> actual = input.getPositionsOfLivingCells(new Coordinates(0,0), new Coordinates(10, 10));
+
+        List<Coordinates> expected = Arrays.asList(new Coordinates(1, 2), new Coordinates(2, 2), new Coordinates(2, 3));
+        assertEquals(expected, actual);
+    }
+
     //What happens when excessive spaces
     //What happens when extra delimiter
     //what about duplicate coordinates

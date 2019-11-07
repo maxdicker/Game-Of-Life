@@ -16,7 +16,7 @@ public class Game {
 
         int width = input.getBoardWidth(2, 100);
         int height = input.getBoardHeight(2, 100);
-        List<Coordinates> positions = input.getPositionsOfLivingCells();
+        List<Coordinates> positions = input.getPositionsOfLivingCells(new Coordinates(0,0), new Coordinates(width, height));
         Board board = new Board(width, height, positions);
 
         int simulationLength = input.getLengthOfSimulation(0, 100);

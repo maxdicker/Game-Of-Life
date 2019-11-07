@@ -1,4 +1,4 @@
-public class Coordinates {
+public class Coordinates implements Comparable<Coordinates> {
     public final int x;
     public final int y;
 
@@ -16,7 +16,15 @@ public class Coordinates {
             return false;
         }
         Coordinates position = (Coordinates) o;
-        return x == position.x && y == position.y;
+        return compareTo(position) == 0;
     }
 
+    @Override
+    public int compareTo(Coordinates o) {
+        int cmp = Integer.compare(y, o.y);
+        if (cmp == 0) {
+            cmp = Integer.compare(x, o.x);
+        }
+        return cmp;
+    }
 }
