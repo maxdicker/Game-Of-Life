@@ -1,4 +1,8 @@
-public class InputValidator {
+package utils;
+
+import core.Coordinates;
+
+public class RangeValidator {
 
     public static boolean numberInRange(int number, int min, int max) {
         return min <= number && number <= max;

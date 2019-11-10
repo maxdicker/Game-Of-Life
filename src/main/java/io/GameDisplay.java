@@ -1,3 +1,9 @@
+package io;
+
+import core.Board;
+import core.Cell;
+import core.Coordinates;
+
 public class GameDisplay {
     private IO io;
 

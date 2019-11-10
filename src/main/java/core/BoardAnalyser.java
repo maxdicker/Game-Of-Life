@@ -1,4 +1,6 @@
-public class CellStateDeterminer {
+package core;
+
+public class BoardAnalyser {
     private final int NUMBER_OF_LIVING_NEIGHBOURS_TO_REVIVE_CELL = 3;
     private final int MIN_NUMBER_OF_LIVING_NEIGHBOURS_TO_SURVIVE = 2;
     private final int MAX_NUMBER_OF_LIVING_NEIGHBOURS_TO_SURVIVE = 3;

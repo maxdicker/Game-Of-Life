@@ -1,3 +1,9 @@
+package io;
+
+import core.Coordinates;
+import utils.CoordinatesParser;
+import utils.RangeValidator;
+
 import java.util.InputMismatchException;
 import java.util.List;
 
@@ -7,13 +13,13 @@ public class UserHandler {
 
     private final String BOARD_WIDTH_PROMPT = "What is the width of the World (in cells)? Please provide a whole number.\n";
     private final String BOARD_HEIGHT_PROMPT = "What is the height of the World (in cells)? Please provide a whole number.\n";
-    private final String GAME_LENGTH_PROMPT = "How long would you like the simulation to run (i.e. number of 'game ticks')? Please provide a whole number.\n";
+    private final String SIMULATION_LENGTH_PROMPT = "How long would you like the simulation to run (i.e. number of 'board evolutions')? Please provide a whole number.\n";
     private final String CELL_POSITIONS_PROMPT = "What are the positions of the initially living cells? Please enter their coordinates.\n" +
             "Format: X coordinate (spaces from left), then whitespace, then Y coordinate (spaces from top). Place a comma between each set of coordinates.\n" +
             "i.e. The very top-left position is written as '0 0'.\n";
 
     private final String INVALID_NUMBER_FORMAT_MESSAGE = "An integer is required here. Please try again.\n";
-    private final String INVALID_COORDINATE_FORMAT_MESSAGE = "Coordinates must be entered in the specified format. Please try again.\n";
+    private final String INVALID_COORDINATE_FORMAT_MESSAGE = "core.Coordinates must be entered in the specified format. Please try again.\n";
     private final String INVALID_NUMBER_OUTSIDE_RANGE_MESSAGE = "The number you specified is not within the required range. Please try again.\n";
     private final String INVALID_COORDINATE_OUTSIDE_RANGE_MESSAGE = "One of the coordinates you specified was not within the required range. Please try again.\n";
 
@@ -37,8 +43,8 @@ public class UserHandler {
         return getValidIntegerFromUser(minHeight, maxHeight);
     }
 
-    public int getSimulationLengthFromUser(int minLength, int maxLength) {
-        io.displayOutput(GAME_LENGTH_PROMPT);
+    public int getNumberOfBoardEvolutionsFromUser(int minLength, int maxLength) {
+        io.displayOutput(SIMULATION_LENGTH_PROMPT);
         displayIntegerBoundariesToUser(minLength, maxLength);
         return getValidIntegerFromUser(minLength, maxLength);
     }
@@ -58,7 +64,7 @@ public class UserHandler {
             return getValidIntegerFromUser(min, max);
         }
 
-        if (!InputValidator.numberInRange(integer, min, max)) {
+        if (!RangeValidator.numberInRange(integer, min, max)) {
             io.displayOutput(INVALID_NUMBER_OUTSIDE_RANGE_MESSAGE);
             return getValidIntegerFromUser(min, max);
         }
@@ -73,7 +79,7 @@ public class UserHandler {
     }
 
     private void displayPositionBoundariesToUser(Coordinates min, Coordinates max) {
-        io.displayOutput("The Coordinates must be between " + convertCoordinatesToString(min) + " and " + convertCoordinatesToString(max) + ".\n");
+        io.displayOutput("The core.Coordinates must be between " + convertCoordinatesToString(min) + " and " + convertCoordinatesToString(max) + ".\n");
     }
 
     private String convertCoordinatesToString(Coordinates position) {
@@ -101,7 +107,7 @@ public class UserHandler {
 
     private boolean positionsInRange(List<Coordinates> positions, Coordinates min, Coordinates max) {
         for (Coordinates position : positions) {
-            if (!InputValidator.positionInRange(position, min, max)) {
+            if (!RangeValidator.positionInRange(position, min, max)) {
                 return false;
             }
         }

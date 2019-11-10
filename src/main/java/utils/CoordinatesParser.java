@@ -1,3 +1,7 @@
+package utils;
+
+import core.Coordinates;
+
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;

@@ -1,3 +1,6 @@
+import core.Coordinates;
+import io.IO;
+import io.UserHandler;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -107,7 +110,7 @@ public class UserInputTest {
         IO stubIO = new StubIO(stubInput);
         UserHandler input = new UserHandler(stubIO);
 
-        int actual = input.getSimulationLengthFromUser(0, 100);
+        int actual = input.getNumberOfBoardEvolutionsFromUser(0, 100);
 
         int expected = Integer.parseInt(five);
         assertEquals(expected, actual);

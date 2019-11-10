@@ -1,1 +1,1 @@
-# Game-Of-Life
+# core.Game-Of-Life

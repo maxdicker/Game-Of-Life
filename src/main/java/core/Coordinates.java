@@ -1,3 +1,5 @@
+package core;
+
 public class Coordinates implements Comparable<Coordinates> {
     public final int x;
     public final int y;

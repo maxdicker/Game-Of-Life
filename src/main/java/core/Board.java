@@ -1,3 +1,5 @@
+package core;
+
 import java.util.*;
 
 public class Board {
@@ -8,7 +10,6 @@ public class Board {
     public Board(int width, int height, List<Coordinates> positionsOfLivingCells) {
         this.width = width;
         this.height = height;
-
         this.neighboursByCell = new LinkedHashMap<>();
 
         for (int i = 0; i < height * width; i++) {
@@ -32,12 +33,24 @@ public class Board {
         return getCell(index);
     }
 
+    private int convertToIndex(Coordinates position) {
+        return position.y * width + position.x;
+    }
+
     private Cell getCell(int index) {
         return (Cell) neighboursByCell.keySet().toArray()[index];
     }
 
-    private int convertToIndex(Coordinates position) {
-        return position.y * width + position.x;
+    private Cell[] findNeighbours(Coordinates position) {
+        int upY =       (position.y + height - 1) % (height);
+        int downY =     (position.y + height + 1) % (height);
+        int leftX =     (position.x + width - 1) % (width);
+        int rightX =    (position.x + width + 1) % (width);
+
+        return new Cell[] {getCell(new Coordinates(leftX, upY)), getCell(new Coordinates(position.x, upY)),
+                getCell(new Coordinates(rightX, upY)), getCell(new Coordinates(rightX, position.y)),
+                getCell(new Coordinates(rightX, downY)), getCell(new Coordinates(position.x, downY)),
+                getCell(new Coordinates(leftX, downY)), getCell(new Coordinates(leftX, position.y))};
     }
 
     public Coordinates getCellPosition(Cell cell) {
@@ -49,19 +62,7 @@ public class Board {
                 }
             }
         }
-        throw new IllegalArgumentException("Board does not contain the given cell.");
-    }
-
-    private Cell[] findNeighbours(Coordinates position) {
-        int upY =       (position.y + height - 1) % (height);
-        int downY =     (position.y + height + 1) % (height);
-        int leftX =     (position.x + width - 1) % (width);
-        int rightX =    (position.x + width + 1) % (width);
-
-        return new Cell[] {getCell(new Coordinates(leftX, upY)), getCell(new Coordinates(position.x, upY)),
-                            getCell(new Coordinates(rightX, upY)), getCell(new Coordinates(rightX, position.y)),
-                            getCell(new Coordinates(rightX, downY)), getCell(new Coordinates(position.x, downY)),
-                            getCell(new Coordinates(leftX, downY)), getCell(new Coordinates(leftX, position.y))};
+        throw new IllegalArgumentException("core.Board does not contain the given cell.");
     }
 
     public Set<Cell> getCells() {

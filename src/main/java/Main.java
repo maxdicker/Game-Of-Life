@@ -1,3 +1,9 @@
+import core.Game;
+import io.ConsoleIO;
+import io.GameDisplay;
+import io.IO;
+import io.UserHandler;
+
 public class Main {
 
     public static void main(String[] args) {

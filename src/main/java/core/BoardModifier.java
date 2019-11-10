@@ -1,8 +1,14 @@
-public class BoardModifier {
-    private CellStateDeterminer determiner = new CellStateDeterminer();
+package core;
 
-    public Board nextState(Board board) {
-        BoardInstructions instructions = determiner.determineBoardChanges(board);
+public class BoardModifier {
+    private BoardAnalyser analyser;
+
+    public BoardModifier() {
+        this.analyser = new BoardAnalyser();
+    }
+
+    public Board nextGeneration(Board board) {
+        BoardInstructions instructions = analyser.determineBoardChanges(board);
 
         modifyBoard(board, instructions);
 

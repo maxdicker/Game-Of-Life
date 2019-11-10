@@ -1,3 +1,6 @@
+import core.Board;
+import core.Cell;
+import core.Coordinates;
 import org.junit.Test;
 
 import java.util.ArrayList;
