@@ -11,20 +11,20 @@ public class UserInputReader {
     private IO io;
     private CoordinatesParser parser;
 
-    private final String BOARD_WIDTH_PROMPT = "What is the width of the World (in cells)? Please provide a whole number.\n";
-    private final String BOARD_HEIGHT_PROMPT = "What is the height of the World (in cells)? Please provide a whole number.\n";
-    private final String SIMULATION_LENGTH_PROMPT = "How long would you like the simulation to run (i.e. number of 'board evolutions')? Please provide a whole number.\n";
-    private final String CELL_POSITIONS_PROMPT = "What are the positions of the initially living cells? Please enter their coordinates.\n" +
+    private static final String BOARD_WIDTH_PROMPT = "What is the width of the World (in cells)? Please provide a whole number.\n";
+    private static final String BOARD_HEIGHT_PROMPT = "What is the height of the World (in cells)? Please provide a whole number.\n";
+    private static final String SIMULATION_LENGTH_PROMPT = "How long would you like the simulation to run (i.e. number of 'board evolutions')? Please provide a whole number.\n";
+    private static final String CELL_POSITIONS_PROMPT = "What are the positions of the initially living cells? Please enter their coordinates.\n" +
             "Format: X coordinate (spaces from left), then whitespace, then Y coordinate (spaces from top). Place a comma between each set of coordinates.\n" +
             "i.e. The very top-left position is written as '0 0'.\n";
 
-    private final String INVALID_NUMBER_FORMAT_MESSAGE = "An integer is required here. Please try again.\n";
-    private final String INVALID_COORDINATE_FORMAT_MESSAGE = "core.Coordinates must be entered in the specified format. Please try again.\n";
-    private final String INVALID_NUMBER_OUTSIDE_RANGE_MESSAGE = "The number you specified is not within the required range. Please try again.\n";
-    private final String INVALID_COORDINATE_OUTSIDE_RANGE_MESSAGE = "One of the coordinates you specified was not within the required range. Please try again.\n";
+    private static final String INVALID_NUMBER_FORMAT_MESSAGE = "An integer is required here. Please try again.\n";
+    private static final String INVALID_COORDINATE_FORMAT_MESSAGE = "core.Coordinates must be entered in the specified format. Please try again.\n";
+    private static final String INVALID_NUMBER_OUTSIDE_RANGE_MESSAGE = "The number you specified is not within the required range. Please try again.\n";
+    private static final String INVALID_COORDINATE_OUTSIDE_RANGE_MESSAGE = "One of the coordinates you specified was not within the required range. Please try again.\n";
 
-    private final String DEFAULT_COORDINATES_DELIMITER = ",";
-    private final String DEFAULT_XY_DELIMITER = "\\s";
+    private static final String DEFAULT_COORDINATES_DELIMITER = ",";
+    private static final String DEFAULT_XY_DELIMITER = "\\s";
 
     public UserInputReader(IO io) {
         this.io = io;

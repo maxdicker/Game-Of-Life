@@ -10,14 +10,15 @@ public class Game {
     private GameDisplay display;
     private BoardModifier modifier;
 
-    private final int MIN_BOARD_WIDTH = 2;
-    private final int MAX_BOARD_WIDTH = 100;
-    private final int MIN_BOARD_HEIGHT = 2;
-    private final int MAX_BOARD_HEIGHT = 100;
-    private final Coordinates MIN_BOARD_BOUNDARY = new Coordinates(0,0);
-    private final int MIN_SIMULATION_LENGTH = 0;
-    private final int MAX_SIMULATION_LENGTH = 100;
-    private final int TIME_BETWEEN_UPDATES = 750;
+    private static final int MIN_BOARD_WIDTH = 2;
+    private static final int MAX_BOARD_WIDTH = 100;
+    private static final int MIN_BOARD_HEIGHT = 2;
+    private static final int MAX_BOARD_HEIGHT = 100;
+    private static final Coordinates MIN_BOARD_BOUNDARY = new Coordinates(0,0);
+    private static final int MIN_SIMULATION_LENGTH = 0;
+    private static final int MAX_SIMULATION_LENGTH = 100;
+
+    private static final int TIME_BETWEEN_UPDATES = 750;
 
     public Game(UserInputReader reader, GameDisplay display) {
         this.reader = reader;
