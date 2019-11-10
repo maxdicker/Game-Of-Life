@@ -20,7 +20,7 @@ public class Game {
         int simulationLength = input.getSimulationLengthFromUser(0, 100);
 
         for (int generation = 0; generation < simulationLength; generation++) {
-            display.printBoard(board);
+            display.displayBoard(board);
             board = controller.nextState(board);
             try {
                 Thread.sleep(750);
