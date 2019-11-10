@@ -1,6 +1,6 @@
 import core.Coordinates;
 import io.IO;
-import io.UserHandler;
+import io.UserInputReader;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -15,7 +15,7 @@ public class UserInputTest {
     public void Given_InputIsAnInteger_When_GettingIntegerFromUser_Then_ReturnsInteger() {
         String stubInput = "5";
         IO stubIO = new StubIO(stubInput);
-        UserHandler input = new UserHandler(stubIO);
+        UserInputReader input = new UserInputReader(stubIO);
 
         int actual = input.getBoardWidthFromUser(0, 10);
 
@@ -28,7 +28,7 @@ public class UserInputTest {
         String five = "5";
         List<String> stubInput = Arrays.asList("", "\n", "foo", five);
         IO stubIO = new StubIO(stubInput);
-        UserHandler input = new UserHandler(stubIO);
+        UserInputReader input = new UserInputReader(stubIO);
 
         int actual = input.getBoardWidthFromUser(0, 10);
 
@@ -40,7 +40,7 @@ public class UserInputTest {
     public void Given_InputInCorrectFormat_When_GettingCoordinatesFromUser_Then_ReturnsListOfMultipleCoordinates() {
         String stubInput = "1 2,2 2,2 3";
         IO stubIO = new StubIO(stubInput);
-        UserHandler input = new UserHandler(stubIO);
+        UserInputReader input = new UserInputReader(stubIO);
 
         List<Coordinates> actual = input.getLivingCellPositionsFromUser(new Coordinates(0,0), new Coordinates(10,10));
 
@@ -52,7 +52,7 @@ public class UserInputTest {
     public void Given_InputInCorrectFormat_When_GettingCoordinatesFromUser_Then_ReturnsSingleCoordinates() {
         String stubInput = "1 2";
         IO stubIO = new StubIO(stubInput);
-        UserHandler input = new UserHandler(stubIO);
+        UserInputReader input = new UserInputReader(stubIO);
 
         List<Coordinates> actual = input.getLivingCellPositionsFromUser(new Coordinates(0,0), new Coordinates(10,10));
 
@@ -69,7 +69,7 @@ public class UserInputTest {
         String nonNumeric = "g g,f f";
         List<String> stubInput = Arrays.asList(excessiveWhitespace, excessiveCoordinatesDelimiter, excessiveXYDelimiter, nonNumeric, correctlyFormattedInput);
         IO stub = new StubIO(stubInput);
-        UserHandler input = new UserHandler(stub);
+        UserInputReader input = new UserInputReader(stub);
 
         List<Coordinates> actual = input.getLivingCellPositionsFromUser(new Coordinates(0,0), new Coordinates(10,10));
 
@@ -82,7 +82,7 @@ public class UserInputTest {
         String five = "5";
         List<String> stubInput = Arrays.asList("1", "1000", "foo", five);
         IO stubIO = new StubIO(stubInput);
-        UserHandler input = new UserHandler(stubIO);
+        UserInputReader input = new UserInputReader(stubIO);
 
         int actual = input.getBoardWidthFromUser(2, 100);
 
@@ -95,7 +95,7 @@ public class UserInputTest {
         String five = "5";
         List<String> stubInput = Arrays.asList("1", "1000", "foo", five);
         IO stubIO = new StubIO(stubInput);
-        UserHandler input = new UserHandler(stubIO);
+        UserInputReader input = new UserInputReader(stubIO);
 
         int actual = input.getBoardHeightFromUser(2, 100);
 
@@ -108,7 +108,7 @@ public class UserInputTest {
         String five = "5";
         List<String> stubInput = Arrays.asList("-1", "1000", "foo", five);
         IO stubIO = new StubIO(stubInput);
-        UserHandler input = new UserHandler(stubIO);
+        UserInputReader input = new UserInputReader(stubIO);
 
         int actual = input.getNumberOfBoardEvolutionsFromUser(0, 100);
 
@@ -123,7 +123,7 @@ public class UserInputTest {
         String XOutsideRange = "3 3,-1 4";
         List<String> stubInput = Arrays.asList(YOutsideRange, XOutsideRange, correctlyFormattedInput);
         IO stubIO = new StubIO(stubInput);
-        UserHandler input = new UserHandler(stubIO);
+        UserInputReader input = new UserInputReader(stubIO);
 
         List<Coordinates> actual = input.getLivingCellPositionsFromUser(new Coordinates(0,0), new Coordinates(10, 10));
 

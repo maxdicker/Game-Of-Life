@@ -2,12 +2,12 @@ package io;
 
 import core.Coordinates;
 import utils.CoordinatesParser;
-import utils.RangeValidator;
+import utils.DataValidator;
 
 import java.util.InputMismatchException;
 import java.util.List;
 
-public class UserHandler {
+public class UserInputReader {
     private IO io;
     private CoordinatesParser parser;
 
@@ -26,7 +26,7 @@ public class UserHandler {
     private final String DEFAULT_COORDINATES_DELIMITER = ",";
     private final String DEFAULT_XY_DELIMITER = "\\s";
 
-    public UserHandler(IO io) {
+    public UserInputReader(IO io) {
         this.io = io;
         this.parser = new CoordinatesParser(DEFAULT_COORDINATES_DELIMITER, DEFAULT_XY_DELIMITER);
     }
@@ -64,7 +64,7 @@ public class UserHandler {
             return getValidIntegerFromUser(min, max);
         }
 
-        if (!RangeValidator.numberInRange(integer, min, max)) {
+        if (!DataValidator.numberInRange(integer, min, max)) {
             io.displayOutput(INVALID_NUMBER_OUTSIDE_RANGE_MESSAGE);
             return getValidIntegerFromUser(min, max);
         }
@@ -107,7 +107,7 @@ public class UserHandler {
 
     private boolean positionsInRange(List<Coordinates> positions, Coordinates min, Coordinates max) {
         for (Coordinates position : positions) {
-            if (!RangeValidator.positionInRange(position, min, max)) {
+            if (!DataValidator.positionInRange(position, min, max)) {
                 return false;
             }
         }

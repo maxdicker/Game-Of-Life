@@ -2,7 +2,7 @@ package utils;
 
 import core.Coordinates;
 
-public class RangeValidator {
+public class DataValidator {
 
     public static boolean numberInRange(int number, int min, int max) {
         return min <= number && number <= max;
