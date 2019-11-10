@@ -12,9 +12,9 @@ public class UserInputTest {
     public void Given_InputIsAnInteger_When_GettingIntegerFromUser_Then_ReturnsInteger() {
         String stubInput = "5";
         IO stubIO = new StubIO(stubInput);
-        InputGatherer input = new InputGatherer(stubIO);
+        ValidUserInput input = new ValidUserInput(stubIO);
 
-        int actual = input.getIntegerFromUser();
+        int actual = input.getBoardWidth(0, 10);
 
         int expected = Integer.parseInt(stubInput);
         assertEquals(expected, actual);
@@ -25,9 +25,9 @@ public class UserInputTest {
         String five = "5";
         List<String> stubInput = Arrays.asList("", "\n", "foo", five);
         IO stubIO = new StubIO(stubInput);
-        InputGatherer input = new InputGatherer(stubIO);
+        ValidUserInput input = new ValidUserInput(stubIO);
 
-        int actual = input.getIntegerFromUser();
+        int actual = input.getBoardWidth(0, 10);
 
         int expected = Integer.parseInt(five);
         assertEquals(expected, actual);
@@ -37,9 +37,9 @@ public class UserInputTest {
     public void Given_InputInCorrectFormat_When_GettingCoordinatesFromUser_Then_ReturnsListOfMultipleCoordinates() {
         String stubInput = "1 2,2 2,2 3";
         IO stubIO = new StubIO(stubInput);
-        InputGatherer input = new InputGatherer(stubIO);
+        ValidUserInput input = new ValidUserInput(stubIO);
 
-        List<Coordinates> actual = input.getCoordinatesFromUser();
+        List<Coordinates> actual = input.getPositionsOfLivingCells(new Coordinates(0,0), new Coordinates(10,10));
 
         List<Coordinates> expected = Arrays.asList(new Coordinates(1, 2), new Coordinates(2, 2), new Coordinates(2, 3));
         assertEquals(expected, actual);
@@ -49,9 +49,9 @@ public class UserInputTest {
     public void Given_InputInCorrectFormat_When_GettingCoordinatesFromUser_Then_ReturnsSingleCoordinates() {
         String stubInput = "1 2";
         IO stubIO = new StubIO(stubInput);
-        InputGatherer input = new InputGatherer(stubIO);
+        ValidUserInput input = new ValidUserInput(stubIO);
 
-        List<Coordinates> actual = input.getCoordinatesFromUser();
+        List<Coordinates> actual = input.getPositionsOfLivingCells(new Coordinates(0,0), new Coordinates(10,10));
 
         List<Coordinates> expected = Collections.singletonList(new Coordinates(1, 2));
         assertEquals(expected, actual);
@@ -66,9 +66,9 @@ public class UserInputTest {
         String nonNumeric = "g g,f f";
         List<String> stubInput = Arrays.asList(excessiveWhitespace, excessiveCoordinatesDelimiter, excessiveXYDelimiter, nonNumeric, correctlyFormattedInput);
         IO stub = new StubIO(stubInput);
-        InputGatherer input = new InputGatherer(stub);
+        ValidUserInput input = new ValidUserInput(stub);
 
-        List<Coordinates> actual = input.getCoordinatesFromUser();
+        List<Coordinates> actual = input.getPositionsOfLivingCells(new Coordinates(0,0), new Coordinates(10,10));
 
         List<Coordinates> expected = Arrays.asList(new Coordinates(1, 2), new Coordinates(2, 2), new Coordinates(2, 3));
         assertEquals(expected, actual);
