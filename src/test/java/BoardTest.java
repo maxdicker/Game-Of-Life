@@ -45,7 +45,7 @@ public class BoardTest {
         Cell[] neighbours = board.getNeighbours(testCell);
         List<Coordinates> positionsOfNeighbours = getCellPositions(board, neighbours);
 
-        assertEquals(positionsOfAllTestCellsNeighbours, positionsOfNeighbours);
+        assertTrue(TestHelper.validatePositionListsAreEqual(positionsOfAllTestCellsNeighbours, positionsOfNeighbours));
     }
 
     @Test
