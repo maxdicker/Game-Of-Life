@@ -72,6 +72,14 @@ public class UserHandler {
         return getValidPositionsFromUser(minBoundary, maxBoundary);
     }
 
+    private void displayPositionBoundariesToUser(Coordinates min, Coordinates max) {
+        io.displayOutput("The Coordinates must be between " + convertCoordinatesToString(min) + " and " + convertCoordinatesToString(max) + ".\n");
+    }
+
+    private String convertCoordinatesToString(Coordinates position) {
+        return "(" + position.x + " " + position.y + ")";
+    }
+
     private List<Coordinates> getValidPositionsFromUser(Coordinates min, Coordinates max) {
         String input = io.readUserInput();
         List<Coordinates> positions;
@@ -98,10 +106,6 @@ public class UserHandler {
             }
         }
         return true;
-    }
-
-    private void displayPositionBoundariesToUser(Coordinates min, Coordinates max) {
-        io.displayOutput("The Coordinates must be between " + min.toString() + " and " + max.toString() + ".\n");
     }
 
 }
