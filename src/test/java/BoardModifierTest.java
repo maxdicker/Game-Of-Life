@@ -44,7 +44,7 @@ public class BoardModifierTest {
         testBoard = modifier.nextGeneration(testBoard);
 
         Board expectedBoard = new Board(boardWidth, boardHeight, OscillatorPatternB);
-        assertEquals(expectedBoard, testBoard);
+        assertTrue(TestHelper.validateBoardsAreEqual(testBoard, expectedBoard));
     }
 
     @Test

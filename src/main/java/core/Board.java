@@ -92,27 +92,4 @@ public class Board {
         return height;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        Board board = (Board) o;
-        boolean cellsEqual = true;
-        for (int i = 0; i < height * width; i++) {
-            if (getCell(i).isAlive() != board.getCell(i).isAlive()) {
-                cellsEqual = false;
-                break;
-            }
-        }
-
-        return width == board.width &&
-                height == board.height &&
-                cellsEqual;
-    }
-
 }
