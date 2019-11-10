@@ -1,4 +1,4 @@
-public class Validator {
+public class InputValidator {
 
     public static boolean numberInRange(int number, int min, int max) {
         return min <= number && number <= max;
