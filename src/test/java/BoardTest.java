@@ -53,8 +53,7 @@ public class BoardTest {
         Cell testCell = board.getCell(testCellPosition);
         board.getCell(positionOfTestCellNeighbour).revive();
 
-        Cell[] neighbours = board.getNeighbours(testCell);
-        int numberOfLivingNeighbours = countLivingCells(neighbours);
+        int numberOfLivingNeighbours = board.countLivingNeighbours(testCell);
 
         assertEquals(1, numberOfLivingNeighbours);
     }
@@ -67,16 +66,6 @@ public class BoardTest {
         }
 
         return cells;
-    }
-
-    private int countLivingCells(Cell[] cells) {
-        int total = 0;
-        for (Cell cell : cells) {
-            if (cell.isAlive()) {
-                total++;
-            }
-        }
-        return total;
     }
 
 }

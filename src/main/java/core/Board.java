@@ -36,12 +36,12 @@ public class Board {
         return getCell(index);
     }
 
-    private int convertToIndex(Coordinates position) {
-        return position.y * width + position.x;
-    }
-
     private Cell getCell(int index) {
         return (Cell) neighboursByCell.keySet().toArray()[index];
+    }
+
+    private int convertToIndex(Coordinates position) {
+        return position.y * width + position.x;
     }
 
     private Cell[] findNeighbours(Coordinates position) {
@@ -60,8 +60,26 @@ public class Board {
         return neighboursByCell.keySet();
     }
 
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
     public Cell[] getNeighbours(Cell cell) {
         return neighboursByCell.get(cell);
+    }
+
+    public int countLivingNeighbours(Cell cell) {
+        int total = 0;
+        for (Cell neighbour : neighboursByCell.get(cell)) {
+            if (neighbour.isAlive()) {
+                total++;
+            }
+        }
+        return total;
     }
 
     public void killCell(Cell cell) {
@@ -72,12 +90,6 @@ public class Board {
         cell.revive();
     }
 
-    public int getWidth() {
-        return width;
-    }
 
-    public int getHeight() {
-        return height;
-    }
 
 }

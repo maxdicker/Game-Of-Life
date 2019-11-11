@@ -9,7 +9,7 @@ public class BoardAnalyser {
         BoardInstructions instructions = new BoardInstructions();
 
         for (Cell cell : board.getCells()) {
-            int numberOfLivingNeighbours = countLivingNeighbours(board, cell);
+            int numberOfLivingNeighbours = board.countLivingNeighbours(cell);
 
             if (numberOfLivingNeighbours < MIN_NUMBER_OF_LIVING_NEIGHBOURS_TO_SURVIVE || numberOfLivingNeighbours > MAX_NUMBER_OF_LIVING_NEIGHBOURS_TO_SURVIVE) {
                 instructions.addKillInstruction(cell);
@@ -21,13 +21,4 @@ public class BoardAnalyser {
         return instructions;
     }
 
-    private int countLivingNeighbours(Board board, Cell cell) {
-        int total = 0;
-        for (Cell neighbour : board.getNeighbours(cell)) {
-            if (neighbour.isAlive()) {
-                total++;
-            }
-        }
-        return total;
-    }
 }
