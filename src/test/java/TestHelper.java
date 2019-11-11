@@ -1,6 +1,8 @@
 import core.Board;
+import core.Cell;
 import core.Coordinates;
 
+import java.util.Collection;
 import java.util.List;
 
 public class TestHelper {
@@ -38,5 +40,31 @@ public class TestHelper {
         }
 
         return true;
+    }
+
+    public static int countLivingCells(Collection<Cell> cells) {
+        int total = 0;
+        for (Cell cell : cells) {
+            if (cell.isAlive()) {
+                total++;
+            }
+        }
+        return total;
+    }
+
+    public static Cell[] getCells(Board board, List<Coordinates> cellPositions) {
+        Cell[] cells = new Cell[cellPositions.size()];
+
+        for (int index = 0; index < cellPositions.size(); index++) {
+            cells[index] = board.getCell(cellPositions.get(index));
+        }
+
+        return cells;
+    }
+
+    public static void reviveCells(Collection<Cell> cells) {
+        for (Cell cell: cells) {
+            cell.revive();
+        }
     }
 }
