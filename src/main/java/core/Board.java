@@ -56,18 +56,6 @@ public class Board {
                 getCell(new Coordinates(leftX, downY)), getCell(new Coordinates(leftX, position.y))};
     }
 
-    public Coordinates getCellPosition(Cell cell) {
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
-                Coordinates position = new Coordinates(x, y);
-                if (getCell(position).equals(cell)) {
-                    return position;
-                }
-            }
-        }
-        throw new IllegalArgumentException("core.Board does not contain the given cell.");
-    }
-
     public Set<Cell> getCells() {
         return neighboursByCell.keySet();
     }

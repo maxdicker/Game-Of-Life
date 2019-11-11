@@ -3,7 +3,6 @@ import core.Cell;
 import core.Coordinates;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -43,9 +42,9 @@ public class BoardTest {
         Cell testCell = board.getCell(testCellPosition);
 
         Cell[] neighbours = board.getNeighbours(testCell);
-        List<Coordinates> positionsOfNeighbours = getCellPositions(board, neighbours);
+        Cell[] expectedNeighbours = getCells(board, positionsOfAllTestCellsNeighbours);
 
-        assertTrue(TestHelper.validatePositionListsAreEqual(positionsOfAllTestCellsNeighbours, positionsOfNeighbours));
+        assertArrayEquals(neighbours, expectedNeighbours);
     }
 
     @Test
@@ -60,12 +59,14 @@ public class BoardTest {
         assertEquals(1, numberOfLivingNeighbours);
     }
 
-    private List<Coordinates> getCellPositions(Board board, Cell[] cells) {
-        List<Coordinates> positions = new ArrayList<>();
-        for (Cell cell : cells) {
-            positions.add(board.getCellPosition(cell));
+    private Cell[] getCells(Board board, List<Coordinates> cellPositions) {
+        Cell[] cells = new Cell[cellPositions.size()];
+
+        for (int position = 0; position < cellPositions.size(); position++) {
+            cells[position] = board.getCell(cellPositions.get(position));
         }
-        return positions;
+
+        return cells;
     }
 
     private int countLivingCells(Cell[] cells) {

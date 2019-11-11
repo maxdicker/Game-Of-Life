@@ -26,14 +26,14 @@ public class Game {
         this.modifier = new BoardModifier();
     }
 
-    public void run() {
+    public Board run() {
         Board board = createUserDefinedBoard();
 
         int evolutions = reader.getNumberOfBoardEvolutionsFromUser(MIN_SIMULATION_LENGTH, MAX_SIMULATION_LENGTH);
 
         for (int generation = 0; generation <= evolutions; generation++) {
             display.displayBoard(board);
-            board = modifier.nextGeneration(board);
+            modifier.nextGeneration(board);
 
             try {
                 Thread.sleep(TIME_BETWEEN_UPDATES);
@@ -42,6 +42,7 @@ public class Game {
             }
         }
 
+        return board;
     }
 
     private Board createUserDefinedBoard() {
