@@ -45,11 +45,9 @@ This project was developed with:
 
 `git clone git@github.com:maxdicker/Game-Of-Life.git`
 
-- Open IntelliJ
+- Open IntelliJ and import as Gradle project
 
-- File -> New -> Project from Existing Sources -> select the cloned folder -> Import project from external model -> Gradle -> Finish -> Import Gradle project (on bottom right popup window)
-
-- Build and run Main file
+- Build, then run Main file
 
 It is recommended to run this in the console. Some difficulties arose in visualizing the grid (console clearing/refreshing) through the IDE's built-in Terminal.
 
