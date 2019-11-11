@@ -9,9 +9,7 @@ public class BoardModifier {
 
     public Board nextGeneration(Board board) {
         BoardInstructions instructions = analyser.determineBoardChanges(board);
-
         modifyBoard(board, instructions);
-
         return board;
     }
 

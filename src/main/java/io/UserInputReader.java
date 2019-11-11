@@ -97,21 +97,12 @@ public class UserInputReader {
             return getValidPositionsFromUser(min, max);
         }
 
-        if (!positionsInRange(positions, min, max)) {
+        if (!DataValidator.positionsInRange(positions, min, max)) {
             io.displayOutput(INVALID_COORDINATE_OUTSIDE_RANGE_MESSAGE);
             return getValidPositionsFromUser(min, max);
         }
 
         return positions;
-    }
-
-    private boolean positionsInRange(List<Coordinates> positions, Coordinates min, Coordinates max) {
-        for (Coordinates position : positions) {
-            if (!DataValidator.positionInRange(position, min, max)) {
-                return false;
-            }
-        }
-        return true;
     }
 
 }

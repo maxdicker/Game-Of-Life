@@ -9,7 +9,6 @@ public class Coordinates implements Comparable<Coordinates> {
         this.y = y;
     }
 
-
     @Override
     public int compareTo(Coordinates o) {
         int cmp = Integer.compare(y, o.y);

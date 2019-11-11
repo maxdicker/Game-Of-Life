@@ -15,7 +15,7 @@ public class Board {
         this.height = height;
         this.neighboursByCell = new LinkedHashMap<>();
 
-        for (int i = 0; i < height * width; i++) {
+        for (int index = 0; index < height * width; index++) {
             neighboursByCell.put(new Cell(false), new Cell[0]);
         }
 
@@ -81,7 +81,5 @@ public class Board {
     public void reviveCell(Cell cell) {
         cell.revive();
     }
-
-
 
 }

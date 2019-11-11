@@ -31,8 +31,8 @@ public class TestHelper {
             return false;
         }
 
-        for (int i = 0; i < positions.size(); i++) {
-            if (!(positions.get(i).compareTo(comparisonPositions.get(i)) == 0)) {
+        for (int index = 0; index < positions.size(); index++) {
+            if (!(positions.get(index).compareTo(comparisonPositions.get(index)) == 0)) {
                 return false;
             }
         }
