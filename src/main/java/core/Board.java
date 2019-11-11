@@ -32,16 +32,8 @@ public class Board {
     }
 
     public Cell getCell(Coordinates position) {
-        int index = convertToIndex(position);
-        return getCell(index);
-    }
-
-    private Cell getCell(int index) {
-        return (Cell) neighboursByCell.keySet().toArray()[index];
-    }
-
-    private int convertToIndex(Coordinates position) {
-        return position.y * width + position.x;
+        int positionAsIndex = position.y * width + position.x;
+        return (Cell) neighboursByCell.keySet().toArray()[positionAsIndex];
     }
 
     private Cell[] findNeighbours(Coordinates position) {
