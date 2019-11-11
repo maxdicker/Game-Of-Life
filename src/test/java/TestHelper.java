@@ -27,7 +27,7 @@ public class TestHelper {
         return true;
     }
 
-    public static boolean validatePositionListsAreEqual(List<Coordinates> positions, List<Coordinates> comparisonPositions) {
+    public static boolean validatePositionsAreEqual(List<Coordinates> positions, List<Coordinates> comparisonPositions) {
 
         if (positions.size() != comparisonPositions.size()) {
             return false;

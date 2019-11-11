@@ -45,7 +45,7 @@ public class UserInputTest {
         List<Coordinates> actual = input.getLivingCellPositionsFromUser(new Coordinates(0,0), new Coordinates(10,10));
 
         List<Coordinates> expected = Arrays.asList(new Coordinates(1, 2), new Coordinates(2, 2), new Coordinates(2, 3));
-        assertTrue(TestHelper.validatePositionListsAreEqual(expected, actual));
+        assertTrue(TestHelper.validatePositionsAreEqual(expected, actual));
     }
 
     @Test
@@ -57,7 +57,7 @@ public class UserInputTest {
         List<Coordinates> actual = input.getLivingCellPositionsFromUser(new Coordinates(0,0), new Coordinates(10,10));
 
         List<Coordinates> expected = Collections.singletonList(new Coordinates(1, 2));
-        assertTrue(TestHelper.validatePositionListsAreEqual(expected, actual));
+        assertTrue(TestHelper.validatePositionsAreEqual(expected, actual));
     }
 
     @Test
@@ -74,7 +74,7 @@ public class UserInputTest {
         List<Coordinates> actual = input.getLivingCellPositionsFromUser(new Coordinates(0,0), new Coordinates(10,10));
 
         List<Coordinates> expected = Arrays.asList(new Coordinates(1, 2), new Coordinates(2, 2), new Coordinates(2, 3));
-        assertTrue(TestHelper.validatePositionListsAreEqual(expected, actual));
+        assertTrue(TestHelper.validatePositionsAreEqual(expected, actual));
     }
 
     @Test
@@ -128,7 +128,7 @@ public class UserInputTest {
         List<Coordinates> actual = input.getLivingCellPositionsFromUser(new Coordinates(0,0), new Coordinates(10, 10));
 
         List<Coordinates> expected = Arrays.asList(new Coordinates(1, 2), new Coordinates(2, 2), new Coordinates(2, 3));
-        assertTrue(TestHelper.validatePositionListsAreEqual(expected, actual));
+        assertTrue(TestHelper.validatePositionsAreEqual(expected, actual));
     }
 
     //What happens when excessive spaces
