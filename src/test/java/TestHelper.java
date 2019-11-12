@@ -62,9 +62,9 @@ public class TestHelper {
         return cells;
     }
 
-    public static void reviveCells(Collection<Cell> cells) {
-        for (Cell cell: cells) {
-            cell.revive();
+    public static void reviveCells(Board board, List<Coordinates> cellPositions) {
+        for (Coordinates position: cellPositions) {
+            board.getCell(position).revive();
         }
     }
 }

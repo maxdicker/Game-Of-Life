@@ -76,11 +76,10 @@ public class BoardTest {
         Board board = new Board(boardWidth, boardHeight, Collections.emptyList());
         Cell testCell = board.getCell(testCellPosition);
 
-        Cell[] neighbours = TestHelper.getCells(board, positionsOfAllTestCellsNeighbours);
-        TestHelper.reviveCells(Arrays.asList(neighbours));
+        TestHelper.reviveCells(board, positionsOfAllTestCellsNeighbours);
         int actual = board.countLivingNeighbours(testCell);
 
-        int expected = neighbours.length;
+        int expected = positionsOfAllTestCellsNeighbours.size();
         assertEquals(expected, actual);
     }
 
