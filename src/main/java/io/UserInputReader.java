@@ -43,10 +43,10 @@ public class UserInputReader {
         return getValidIntegerFromUser(minHeight, maxHeight);
     }
 
-    public int getNumberOfBoardEvolutionsFromUser(int minLength, int maxLength) {
+    public int getNumberOfBoardEvolutionsFromUser(int minEvolutions, int maxEvolutions) {
         io.displayOutput(SIMULATION_LENGTH_PROMPT);
-        displayIntegerBoundariesToUser(minLength, maxLength);
-        return getValidIntegerFromUser(minLength, maxLength);
+        displayIntegerBoundariesToUser(minEvolutions, maxEvolutions);
+        return getValidIntegerFromUser(minEvolutions, maxEvolutions);
     }
 
     private void displayIntegerBoundariesToUser(int min, int max) {
