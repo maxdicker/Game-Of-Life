@@ -16,20 +16,20 @@ public class BoardModificationTest {
 
     private Coordinates testCellPosition = new Coordinates(0, 0);
     private List<Coordinates> positionsOfTestCellAndOneNeighbour =
-            Arrays.asList(testCellPosition, new Coordinates(0, 1));
+            Arrays.asList(new Coordinates(0, 0), new Coordinates(0, 1));
 
     private List<Coordinates> positionsOfTestCellAndTwoNeighbours =
-            Arrays.asList(testCellPosition, new Coordinates(0, 1), new Coordinates(1, 1));
+            Arrays.asList(new Coordinates(0, 0), new Coordinates(0, 1), new Coordinates(1, 1));
 
     private List<Coordinates> positionsOfTestCellAndThreeNeighbours =
-            Arrays.asList(testCellPosition, new Coordinates(0, 1), new Coordinates(1, 1),
+            Arrays.asList(new Coordinates(0, 0), new Coordinates(0, 1), new Coordinates(1, 1),
                     new Coordinates(1, 0));
 
     private List<Coordinates> positionsOfThreeTestCellNeighbours =
             Arrays.asList(new Coordinates(0, 1), new Coordinates(1, 1), new Coordinates(1, 0));
 
     private List<Coordinates> positionsOfTestCellAndFourNeighbours =
-            Arrays.asList(testCellPosition, new Coordinates(0, 1), new Coordinates(1, 1),
+            Arrays.asList(new Coordinates(0, 0), new Coordinates(0, 1), new Coordinates(1, 1),
                     new Coordinates(1, 0), new Coordinates(4, 4));
 
     private List<Coordinates> OscillatorPatternA =
