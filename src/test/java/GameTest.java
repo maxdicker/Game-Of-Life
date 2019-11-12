@@ -7,23 +7,22 @@ import io.UserInputReader;
 import org.junit.Test;
 
 import java.util.Arrays;
-import java.util.List;
 
+import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
 
 public class GameTest {
 
     @Test
     public void Given_InputToGenerateBoard_When_RunningGame_Then_GameReturnsCorrectBoard() {
-        String boardWidth = "5";
-        String boardHeight = "5";
-        String livingCellPositions = "2 1,2 2,2 3";
-        String numberOfEvolutions = "5";
-        List<String> stubInput = Arrays.asList(boardWidth, boardHeight, livingCellPositions, numberOfEvolutions);
-        IO stubIO = new StubIO(stubInput);
-        UserInputReader reader = new UserInputReader(stubIO);
+        UserInputReader mockReader = mock(UserInputReader.class);
+        when(mockReader.getBoardWidthFromUser(2,100)).thenReturn(5);
+        when(mockReader.getBoardHeightFromUser(2,100)).thenReturn(5);
+        when(mockReader.getLivingCellPositionsFromUser(new Coordinates(0,0), new Coordinates(4,4))).thenReturn(Arrays.asList(new Coordinates(2,1), new Coordinates(2,2), new Coordinates(2,3)));
+        when(mockReader.getNumberOfBoardEvolutionsFromUser(0,100)).thenReturn(5);
+        IO stubIO = new StubIO("");
         GameDisplay display = new GameDisplay(stubIO);
-        Game game = new Game(reader, display);
+        Game game = new Game(mockReader, display);
 
         Board actualBoard = game.run();
 
