@@ -31,15 +31,17 @@ public class Game {
 
         int evolutions = reader.getNumberOfBoardEvolutionsFromUser(MIN_SIMULATION_LENGTH, MAX_SIMULATION_LENGTH);
 
-        for (int generation = 0; generation <= evolutions; generation++) {
-            display.displayBoard(board);
-            modifier.nextGeneration(board);
+        display.displayBoard(board);
 
+        for (int evolution = 0; evolution < evolutions; evolution++) {
             try {
                 Thread.sleep(TIME_BETWEEN_UPDATES);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
+            modifier.nextGeneration(board);
+            display.displayBoard(board);
         }
 
         return board;
