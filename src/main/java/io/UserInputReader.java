@@ -31,28 +31,21 @@ public class UserInputReader {
     }
 
     public int getBoardWidthFromUser(int minWidth, int maxWidth) {
-        io.displayOutput(BOARD_WIDTH_PROMPT);
-        displayIntegerBoundariesToUser(minWidth, maxWidth);
-        return getValidIntegerFromUser(minWidth, maxWidth);
+        return getValidIntegerFromUser(BOARD_WIDTH_PROMPT, minWidth, maxWidth);
     }
 
     public int getBoardHeightFromUser(int minHeight, int maxHeight) {
-        io.displayOutput(BOARD_HEIGHT_PROMPT);
-        displayIntegerBoundariesToUser(minHeight, maxHeight);
-        return getValidIntegerFromUser(minHeight, maxHeight);
+        return getValidIntegerFromUser(BOARD_HEIGHT_PROMPT, minHeight, maxHeight);
     }
 
     public int getNumberOfBoardEvolutionsFromUser(int minEvolutions, int maxEvolutions) {
-        io.displayOutput(SIMULATION_LENGTH_PROMPT);
-        displayIntegerBoundariesToUser(minEvolutions, maxEvolutions);
-        return getValidIntegerFromUser(minEvolutions, maxEvolutions);
+        return getValidIntegerFromUser(SIMULATION_LENGTH_PROMPT, minEvolutions, maxEvolutions);
     }
 
-    private void displayIntegerBoundariesToUser(int min, int max) {
-        io.displayOutput("The minimum and maximum for this field are " + min + " and " + max + ", respectively.\n");
-    }
+    private int getValidIntegerFromUser(String fieldPrompt, int min, int max) {
+        io.displayOutput(fieldPrompt);
+        displayIntegerBoundariesToUser(min, max);
 
-    private int getValidIntegerFromUser(int min, int max) {
         int integer = 0;
         boolean inputIsValid;
 
@@ -78,21 +71,14 @@ public class UserInputReader {
         return integer;
     }
 
+    private void displayIntegerBoundariesToUser(int min, int max) {
+        io.displayOutput("The minimum and maximum for this field are " + min + " and " + max + ", respectively.\n");
+    }
+
     public List<Coordinates> getLivingCellPositionsFromUser(Coordinates minBoundary, Coordinates maxBoundary) {
         io.displayOutput(CELL_POSITIONS_PROMPT);
         displayPositionBoundariesToUser(minBoundary, maxBoundary);
-        return getValidPositionsFromUser(minBoundary, maxBoundary);
-    }
 
-    private void displayPositionBoundariesToUser(Coordinates min, Coordinates max) {
-        io.displayOutput("The core.Coordinates must be between " + convertCoordinatesToString(min) + " and " + convertCoordinatesToString(max) + ".\n");
-    }
-
-    private String convertCoordinatesToString(Coordinates position) {
-        return "(" + position.x + "," + position.y + ")";
-    }
-
-    private List<Coordinates> getValidPositionsFromUser(Coordinates min, Coordinates max) {
         List<Coordinates> positions = Collections.emptyList();
         boolean inputIsValid;
 
@@ -108,7 +94,7 @@ public class UserInputReader {
                 continue;
             }
 
-            if (!InputValidator.positionsInRange(positions, min, max)) {
+            if (!InputValidator.positionsInRange(positions, minBoundary, maxBoundary)) {
                 io.displayOutput(INVALID_COORDINATE_OUTSIDE_RANGE_MESSAGE);
                 inputIsValid = false;
             }
@@ -116,6 +102,14 @@ public class UserInputReader {
         } while (!inputIsValid);
 
         return positions;
+    }
+
+    private void displayPositionBoundariesToUser(Coordinates min, Coordinates max) {
+        io.displayOutput("The core.Coordinates must be between " + convertCoordinatesToString(min) + " and " + convertCoordinatesToString(max) + ".\n");
+    }
+
+    private String convertCoordinatesToString(Coordinates position) {
+        return "(" + position.x + "," + position.y + ")";
     }
 
 }
