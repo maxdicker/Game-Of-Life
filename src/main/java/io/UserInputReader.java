@@ -2,7 +2,6 @@ package io;
 
 import core.Coordinates;
 
-import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.List;
 
@@ -45,28 +44,25 @@ public class UserInputReader {
     private int getValidIntegerFromUser(String fieldPrompt, int min, int max) {
         io.displayOutput(fieldPrompt);
         displayIntegerBoundariesToUser(min, max);
+        int integer;
 
-        int integer = 0;
-        boolean inputIsValid;
-
-        do {
+        while (true) {
             String input = io.readUserInput();
-            inputIsValid = true;
 
             try {
                 integer = Integer.parseInt(input);
             } catch (NumberFormatException e) {
                 io.displayOutput(INVALID_NUMBER_FORMAT_MESSAGE);
-                inputIsValid = false;
                 continue;
             }
 
             if (!InputValidator.numberInRange(integer, min, max)) {
                 io.displayOutput(INVALID_NUMBER_OUTSIDE_RANGE_MESSAGE);
-                inputIsValid = false;
+                continue;
             }
 
-        } while (!inputIsValid);
+            break;
+        }
 
         return integer;
     }
@@ -78,28 +74,25 @@ public class UserInputReader {
     public List<Coordinates> getLivingCellPositionsFromUser(Coordinates minBoundary, Coordinates maxBoundary) {
         io.displayOutput(CELL_POSITIONS_PROMPT);
         displayPositionBoundariesToUser(minBoundary, maxBoundary);
+        List<Coordinates> positions;
 
-        List<Coordinates> positions = Collections.emptyList();
-        boolean inputIsValid;
-
-        do {
+        while (true) {
             String input = io.readUserInput();
-            inputIsValid = true;
 
             try {
                 positions = parser.parseCoordinates(input);
             } catch (InputMismatchException e) {
                 io.displayOutput(INVALID_COORDINATE_FORMAT_MESSAGE);
-                inputIsValid = false;
                 continue;
             }
 
             if (!InputValidator.positionsInRange(positions, minBoundary, maxBoundary)) {
                 io.displayOutput(INVALID_COORDINATE_OUTSIDE_RANGE_MESSAGE);
-                inputIsValid = false;
+                continue;
             }
 
-        } while (!inputIsValid);
+            break;
+        }
 
         return positions;
     }
