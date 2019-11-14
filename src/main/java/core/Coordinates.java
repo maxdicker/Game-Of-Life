@@ -18,4 +18,16 @@ public class Coordinates implements Comparable<Coordinates> {
         return cmp;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Coordinates position = (Coordinates) o;
+        return compareTo(position) == 0;
+    }
+
 }

@@ -14,26 +14,32 @@ public class Board {
         this.width = width;
         this.height = height;
         this.neighboursByCell = new LinkedHashMap<>();
+        populateBoardWithNewCells(positionsOfLivingCells);
+        assignNeighboursToCells();
+    }
 
-        for (int index = 0; index < height * width; index++) {
-            neighboursByCell.put(new Cell(false), new Cell[0]);
+    private void populateBoardWithNewCells(List<Coordinates> positionsOfLivingCells) {
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                Coordinates position = new Coordinates(x, y);
+                boolean alive = false;
+
+                if (positionsOfLivingCells.contains(position)){
+                    alive = true;
+                }
+
+                neighboursByCell.put(new Cell(alive), new Cell[0]);
+            }
         }
+    }
 
+    private void assignNeighboursToCells() {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 Coordinates position = new Coordinates(x, y);
                 neighboursByCell.put(getCellByPosition(position), findNeighboursByPosition(position));
             }
         }
-
-        for (Coordinates position : positionsOfLivingCells) {
-            getCellByPosition(position).revive();
-        }
-    }
-
-    public Cell getCellByPosition(Coordinates position) {
-        int positionAsIndex = position.y * width + position.x;
-        return (Cell) neighboursByCell.keySet().toArray()[positionAsIndex];
     }
 
     private Cell[] findNeighboursByPosition(Coordinates position) {
@@ -50,6 +56,11 @@ public class Board {
                 getCellByPosition(new Coordinates(position.x, downY)),
                 getCellByPosition(new Coordinates(leftX, downY)),
                 getCellByPosition(new Coordinates(leftX, position.y))};
+    }
+
+    public Cell getCellByPosition(Coordinates position) {
+        int positionAsIndex = position.y * width + position.x;
+        return (Cell) neighboursByCell.keySet().toArray()[positionAsIndex];
     }
 
     public Set<Cell> getCells() {
