@@ -20,7 +20,7 @@ public class GameTest {
     public void Given_InputToGenerateBoard_When_RunningGame_Then_GameReturnsCorrectBoard() {
         String boardWidth = "5";
         String boardHeight = "5";
-        String livingCellPositions = "2 1,2 2,2 3";
+        String livingCellPositions = "2,1|2,2|2,3";
         String numberOfEvolutions = "5";
         List<String> stubInput = Arrays.asList(boardWidth, boardHeight, livingCellPositions, numberOfEvolutions);
         IO stubIO = new StubIO(stubInput);
@@ -38,7 +38,7 @@ public class GameTest {
     public void Given_InputToGenerateBoard_When_RunningGame_Then_GameDisplaysCorrectBoard() {
         String boardWidth = "5";
         String boardHeight = "5";
-        String livingCellPositions = "2 1,2 2,2 3";
+        String livingCellPositions = "2,1|2,2|2,3";
         String numberOfEvolutions = "1";
         List<String> stubInput = Arrays.asList(boardWidth, boardHeight, livingCellPositions, numberOfEvolutions);
         IO stubIO = new StubIO(stubInput);

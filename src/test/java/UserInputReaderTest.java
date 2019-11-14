@@ -97,7 +97,7 @@ public class UserInputReaderTest {
 
     @Test
     public void Given_InputIsFormattedCorrectly_When_GettingCoordinates_Then_ReaderReturnsSingleCoordinatesSet() {
-        String positionInCorrectFormat = "1 2";
+        String positionInCorrectFormat = "1,2";
         IO stubIO = new StubIO(positionInCorrectFormat);
         UserInputReader reader = new UserInputReader(stubIO);
 
@@ -109,7 +109,7 @@ public class UserInputReaderTest {
 
     @Test
     public void Given_InputIsFormattedCorrectly_When_GettingCoordinates_Then_ReaderReturnsListOfMultipleCoordinates() {
-        String positionsInCorrectFormat = "1 2,2 2,2 3";
+        String positionsInCorrectFormat = "1,2|2,2|2,3";
         IO stubIO = new StubIO(positionsInCorrectFormat);
         UserInputReader reader = new UserInputReader(stubIO);
 
@@ -121,11 +121,11 @@ public class UserInputReaderTest {
 
     @Test
     public void Given_InitialInputIsNotFormattedCorrectly_When_GettingCoordinates_Then_ReaderRetrievesMoreInputAndReturnsFirstCorrectlyFormattedCoordinates() {
-        String excessiveWhitespace = "3 3 ,4 4";
-        String excessiveCoordinatesDelimiter = "3 3,,4 4";
-        String excessiveXYDelimiter = "3 3,4  4";
-        String nonNumeric = "g g,f f";
-        String positionsInCorrectFormat = "1 2,2 2,2 3";
+        String excessiveWhitespace = "3,3 |4,4";
+        String excessiveCoordinatesDelimiter = "3,3||4,4";
+        String excessiveXYDelimiter = "3,3|4,,4";
+        String nonNumeric = "g,g|f,f";
+        String positionsInCorrectFormat = "1,2|2,2|2,3";
         List<String> stubInput = Arrays.asList(excessiveWhitespace, excessiveCoordinatesDelimiter, excessiveXYDelimiter, nonNumeric, positionsInCorrectFormat);
         IO stubIO = new StubIO(stubInput);
         UserInputReader reader = new UserInputReader(stubIO);
@@ -140,9 +140,9 @@ public class UserInputReaderTest {
     public void Given_InitialInputIsOutsideRange_When_GettingCoordinates_Then_ReaderRetrievesMoreInputAndReturnsFirstCoordinatesInRange() {
         Coordinates fieldMin = new Coordinates(0,0);
         Coordinates fieldMax = new Coordinates(10,10);
-        String YOutsideRange = "3 11,4 4";
-        String XOutsideRange = "3 3,-1 4";
-        String positionsInCorrectFormat = "1 2,2 2,2 3";
+        String YOutsideRange = "3,11|4,4";
+        String XOutsideRange = "3,3|-1,4";
+        String positionsInCorrectFormat = "1,2|2,2|2,3";
         List<String> stubInput = Arrays.asList(YOutsideRange, XOutsideRange, positionsInCorrectFormat);
         IO stubIO = new StubIO(stubInput);
         UserInputReader reader = new UserInputReader(stubIO);
