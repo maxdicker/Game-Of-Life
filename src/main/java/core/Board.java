@@ -14,22 +14,20 @@ public class Board {
         this.width = width;
         this.height = height;
         this.neighboursByCell = new LinkedHashMap<>();
-        populateBoardWithNewCells(positionsOfLivingCells);
+        populateBoardWithDeadCells();
+        reviveCellsAtPositions(positionsOfLivingCells);
         assignNeighboursToCells();
     }
 
-    private void populateBoardWithNewCells(List<Coordinates> positionsOfLivingCells) {
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
-                Coordinates position = new Coordinates(x, y);
-                boolean alive = false;
+    private void populateBoardWithDeadCells() {
+        for (int index = 0; index < height * width; index++) {
+            neighboursByCell.put(new Cell(false), new Cell[0]);
+        }
+    }
 
-                if (positionsOfLivingCells.contains(position)){
-                    alive = true;
-                }
-
-                neighboursByCell.put(new Cell(alive), new Cell[0]);
-            }
+    private void reviveCellsAtPositions(List<Coordinates> positions) {
+        for (Coordinates position : positions) {
+            getCellByPosition(position).revive();
         }
     }
 
