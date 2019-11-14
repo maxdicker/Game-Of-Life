@@ -1,10 +1,10 @@
-package utils;
+package io;
 
 import core.Coordinates;
 
 import java.util.List;
 
-public class DataValidator {
+public class InputValidator {
 
     public static boolean numberInRange(int number, int min, int max) {
         return min <= number && number <= max;

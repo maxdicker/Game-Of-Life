@@ -1,8 +1,6 @@
 package io;
 
 import core.Coordinates;
-import utils.CoordinatesParser;
-import utils.DataValidator;
 
 import java.util.InputMismatchException;
 import java.util.List;
@@ -64,7 +62,7 @@ public class UserInputReader {
             return getValidIntegerFromUser(min, max);
         }
 
-        if (!DataValidator.numberInRange(integer, min, max)) {
+        if (!InputValidator.numberInRange(integer, min, max)) {
             io.displayOutput(INVALID_NUMBER_OUTSIDE_RANGE_MESSAGE);
             return getValidIntegerFromUser(min, max);
         }
@@ -97,7 +95,7 @@ public class UserInputReader {
             return getValidPositionsFromUser(min, max);
         }
 
-        if (!DataValidator.positionsInRange(positions, min, max)) {
+        if (!InputValidator.positionsInRange(positions, min, max)) {
             io.displayOutput(INVALID_COORDINATE_OUTSIDE_RANGE_MESSAGE);
             return getValidPositionsFromUser(min, max);
         }

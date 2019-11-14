@@ -1,13 +1,13 @@
 import core.Coordinates;
 import org.junit.Test;
-import utils.DataValidator;
+import io.InputValidator;
 
 import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class DataValidatorTest {
+public class InputValidatorTest {
     private int numMin = 1;
     private int numMax = 3;
     private int numWithinRange = 1;
@@ -19,21 +19,21 @@ public class DataValidatorTest {
 
     @Test
     public void Given_NumberWithinRange_When_Validating_Then_ValidatorReturnsTrue() {
-        assertTrue(DataValidator.numberInRange(numWithinRange, numMin, numMax));
+        assertTrue(InputValidator.numberInRange(numWithinRange, numMin, numMax));
     }
 
     @Test
     public void Given_NumberOutsideRange_When_Validating_Then_ValidatorReturnsFalse() {
-        assertFalse(DataValidator.numberInRange(numOutsideRange, numMin, numMax));
+        assertFalse(InputValidator.numberInRange(numOutsideRange, numMin, numMax));
     }
 
     @Test
     public void Given_APositionWithinRange_When_Validating_Then_ValidatorReturnsTrue() {
-        assertTrue(DataValidator.positionsInRange(positionsWithinRange, positionMin, positionMax));
+        assertTrue(InputValidator.positionsInRange(positionsWithinRange, positionMin, positionMax));
     }
 
     @Test
     public void Given_APositionOutsideRange_When_Validating_Then_ValidatorReturnsFalse() {
-        assertFalse(DataValidator.positionsInRange(positionsOutsideRange, positionMin, positionMax));
+        assertFalse(InputValidator.positionsInRange(positionsOutsideRange, positionMin, positionMax));
     }
 }

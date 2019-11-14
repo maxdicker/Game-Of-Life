@@ -1,6 +1,6 @@
 import core.Coordinates;
 import org.junit.Test;
-import utils.CoordinatesParser;
+import io.CoordinatesParser;
 
 import java.util.Arrays;
 import java.util.InputMismatchException;
