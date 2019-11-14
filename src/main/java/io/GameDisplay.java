@@ -32,7 +32,7 @@ public class GameDisplay {
 
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                Cell cell = board.getCell(new Coordinates(x, y));
+                Cell cell = board.getCellByPosition(new Coordinates(x, y));
                 boardAsString.append(getCellSymbol(cell));
             }
             boardAsString.append("\n");

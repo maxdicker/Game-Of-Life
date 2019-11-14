@@ -22,30 +22,34 @@ public class Board {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 Coordinates position = new Coordinates(x, y);
-                neighboursByCell.put(getCell(position), findNeighbours(position));
+                neighboursByCell.put(getCellByPosition(position), findNeighboursByPosition(position));
             }
         }
 
         for (Coordinates position : positionsOfLivingCells) {
-            getCell(position).revive();
+            getCellByPosition(position).revive();
         }
     }
 
-    public Cell getCell(Coordinates position) {
+    public Cell getCellByPosition(Coordinates position) {
         int positionAsIndex = position.y * width + position.x;
         return (Cell) neighboursByCell.keySet().toArray()[positionAsIndex];
     }
 
-    private Cell[] findNeighbours(Coordinates position) {
+    private Cell[] findNeighboursByPosition(Coordinates position) {
         int upY =       (position.y + height - 1) % (height);
         int downY =     (position.y + height + 1) % (height);
         int leftX =     (position.x + width - 1) % (width);
         int rightX =    (position.x + width + 1) % (width);
 
-        return new Cell[] {getCell(new Coordinates(leftX, upY)), getCell(new Coordinates(position.x, upY)),
-                getCell(new Coordinates(rightX, upY)), getCell(new Coordinates(rightX, position.y)),
-                getCell(new Coordinates(rightX, downY)), getCell(new Coordinates(position.x, downY)),
-                getCell(new Coordinates(leftX, downY)), getCell(new Coordinates(leftX, position.y))};
+        return new Cell[] {getCellByPosition(new Coordinates(leftX, upY)),
+                getCellByPosition(new Coordinates(position.x, upY)),
+                getCellByPosition(new Coordinates(rightX, upY)),
+                getCellByPosition(new Coordinates(rightX, position.y)),
+                getCellByPosition(new Coordinates(rightX, downY)),
+                getCellByPosition(new Coordinates(position.x, downY)),
+                getCellByPosition(new Coordinates(leftX, downY)),
+                getCellByPosition(new Coordinates(leftX, position.y))};
     }
 
     public Set<Cell> getCells() {
@@ -72,14 +76,6 @@ public class Board {
             }
         }
         return total;
-    }
-
-    public void killCell(Cell cell) {
-        cell.kill();
-    }
-
-    public void reviveCell(Cell cell) {
-        cell.revive();
     }
 
 }

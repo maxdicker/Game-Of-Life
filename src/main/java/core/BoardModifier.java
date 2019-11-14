@@ -9,17 +9,17 @@ public class BoardModifier {
 
     public Board nextGeneration(Board board) {
         BoardInstructions instructions = analyser.determineBoardChanges(board);
-        modifyBoard(board, instructions);
+        modifyBoard(instructions);
         return board;
     }
 
-    private void modifyBoard(Board board, BoardInstructions instructions) {
+    private void modifyBoard(BoardInstructions instructions) {
         for (Cell cell : instructions.getCellsToKill()) {
-            board.killCell(cell);
+            cell.kill();
         }
 
         for (Cell cell : instructions.getCellsToRevive()) {
-            board.reviveCell(cell);
+            cell.revive();
         }
 
     }

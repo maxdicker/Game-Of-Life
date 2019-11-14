@@ -18,7 +18,7 @@ public class TestHelper {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 Coordinates position = new Coordinates(x, y);
-                if (board.getCell(position).isAlive() != comparisonBoard.getCell(position).isAlive()) {
+                if (board.getCellByPosition(position).isAlive() != comparisonBoard.getCellByPosition(position).isAlive()) {
                     return false;
                 }
             }
@@ -56,7 +56,7 @@ public class TestHelper {
         Cell[] cells = new Cell[cellPositions.size()];
 
         for (int index = 0; index < cellPositions.size(); index++) {
-            cells[index] = board.getCell(cellPositions.get(index));
+            cells[index] = board.getCellByPosition(cellPositions.get(index));
         }
 
         return cells;
@@ -64,7 +64,7 @@ public class TestHelper {
 
     public static void reviveCells(Board board, List<Coordinates> cellPositions) {
         for (Coordinates position: cellPositions) {
-            board.getCell(position).revive();
+            board.getCellByPosition(position).revive();
         }
     }
 }

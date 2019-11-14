@@ -44,13 +44,13 @@ public class BoardTest {
     public void Given_ASpecificPosition_Then_PositionOnNewBoardIsOccupiedByLivingCell() {
         Board board = new Board(boardWidth, boardHeight, Collections.singletonList(testCellPosition));
 
-        assertTrue(board.getCell(testCellPosition).isAlive());
+        assertTrue(board.getCellByPosition(testCellPosition).isAlive());
     }
 
     @Test
     public void When_RetrievingNeighboursOfACellFromBoard_Then_BoardReturnsCellsInTheEightNeighbouringPositions() {
         Board board = new Board(boardWidth, boardHeight, Collections.emptyList());
-        Cell testCell = board.getCell(testCellPosition);
+        Cell testCell = board.getCellByPosition(testCellPosition);
 
         Cell[] actual = board.getNeighbours(testCell);
 
@@ -61,9 +61,9 @@ public class BoardTest {
     @Test
     public void Given_ACellsNeighboursStateHasChanged_When_RetrievingTheCellsNeighbours_Then_BoardReturnsUpdatedNeighbour() {
         Board board = new Board(boardWidth, boardHeight, Collections.emptyList());
-        Cell testCell = board.getCell(testCellPosition);
+        Cell testCell = board.getCellByPosition(testCellPosition);
 
-        board.getCell(positionOfATestCellNeighbour).revive();
+        board.getCellByPosition(positionOfATestCellNeighbour).revive();
         Cell[] neighbours = board.getNeighbours(testCell);
 
         int actual = TestHelper.countLivingCells(Arrays.asList(neighbours));
@@ -74,7 +74,7 @@ public class BoardTest {
     @Test
     public void When_QueryingNumberOfLivingNeighboursFromBoard_Then_BoardReturnsNumberOfLivingNeighbours() {
         Board board = new Board(boardWidth, boardHeight, Collections.emptyList());
-        Cell testCell = board.getCell(testCellPosition);
+        Cell testCell = board.getCellByPosition(testCellPosition);
 
         TestHelper.reviveCells(board, positionsOfAllTestCellsNeighbours);
         int actual = board.countLivingNeighbours(testCell);

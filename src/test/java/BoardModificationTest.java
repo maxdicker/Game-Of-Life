@@ -45,7 +45,7 @@ public class BoardModificationTest {
 
         modifier.nextGeneration(board);
 
-        Cell testCell = board.getCell(testCellPosition);
+        Cell testCell = board.getCellByPosition(testCellPosition);
         assertFalse(testCell.isAlive());
     }
 
@@ -57,7 +57,7 @@ public class BoardModificationTest {
 
         modifier.nextGeneration(board);
 
-        Cell testCell = board.getCell(testCellPosition);
+        Cell testCell = board.getCellByPosition(testCellPosition);
         assertFalse(testCell.isAlive());
     }
 
@@ -69,7 +69,7 @@ public class BoardModificationTest {
 
         modifier.nextGeneration(board);
 
-        Cell testCell = board.getCell(testCellPosition);
+        Cell testCell = board.getCellByPosition(testCellPosition);
         assertTrue(testCell.isAlive());
     }
 
@@ -81,7 +81,7 @@ public class BoardModificationTest {
 
         modifier.nextGeneration(board);
 
-        Cell testCell = board.getCell(testCellPosition);
+        Cell testCell = board.getCellByPosition(testCellPosition);
         assertTrue(testCell.isAlive());
     }
 
@@ -93,7 +93,7 @@ public class BoardModificationTest {
 
         modifier.nextGeneration(board);
 
-        Cell testCell = board.getCell(testCellPosition);
+        Cell testCell = board.getCellByPosition(testCellPosition);
         assertTrue(testCell.isAlive());
     }
 
