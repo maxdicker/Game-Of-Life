@@ -2,6 +2,7 @@ package io;
 
 import core.Coordinates;
 
+import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.List;
 
@@ -52,20 +53,27 @@ public class UserInputReader {
     }
 
     private int getValidIntegerFromUser(int min, int max) {
-        String input = io.readUserInput();
-        int integer;
+        int integer = 0;
+        boolean inputIsValid;
 
-        try {
-            integer = Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            io.displayOutput(INVALID_NUMBER_FORMAT_MESSAGE);
-            return getValidIntegerFromUser(min, max);
-        }
+        do {
+            String input = io.readUserInput();
+            inputIsValid = true;
 
-        if (!InputValidator.numberInRange(integer, min, max)) {
-            io.displayOutput(INVALID_NUMBER_OUTSIDE_RANGE_MESSAGE);
-            return getValidIntegerFromUser(min, max);
-        }
+            try {
+                integer = Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                io.displayOutput(INVALID_NUMBER_FORMAT_MESSAGE);
+                inputIsValid = false;
+                continue;
+            }
+
+            if (!InputValidator.numberInRange(integer, min, max)) {
+                io.displayOutput(INVALID_NUMBER_OUTSIDE_RANGE_MESSAGE);
+                inputIsValid = false;
+            }
+
+        } while (!inputIsValid);
 
         return integer;
     }
@@ -85,20 +93,27 @@ public class UserInputReader {
     }
 
     private List<Coordinates> getValidPositionsFromUser(Coordinates min, Coordinates max) {
-        String input = io.readUserInput();
-        List<Coordinates> positions;
+        List<Coordinates> positions = Collections.emptyList();
+        boolean inputIsValid;
 
-        try {
-            positions = parser.parseCoordinates(input);
-        } catch (InputMismatchException e) {
-            io.displayOutput(INVALID_COORDINATE_FORMAT_MESSAGE);
-            return getValidPositionsFromUser(min, max);
-        }
+        do {
+            String input = io.readUserInput();
+            inputIsValid = true;
 
-        if (!InputValidator.positionsInRange(positions, min, max)) {
-            io.displayOutput(INVALID_COORDINATE_OUTSIDE_RANGE_MESSAGE);
-            return getValidPositionsFromUser(min, max);
-        }
+            try {
+                positions = parser.parseCoordinates(input);
+            } catch (InputMismatchException e) {
+                io.displayOutput(INVALID_COORDINATE_FORMAT_MESSAGE);
+                inputIsValid = false;
+                continue;
+            }
+
+            if (!InputValidator.positionsInRange(positions, min, max)) {
+                io.displayOutput(INVALID_COORDINATE_OUTSIDE_RANGE_MESSAGE);
+                inputIsValid = false;
+            }
+
+        } while (!inputIsValid);
 
         return positions;
     }
