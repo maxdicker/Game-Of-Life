@@ -2,6 +2,7 @@ import core.Board;
 import core.Cell;
 import core.Coordinates;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -37,11 +38,11 @@ public class TestHelper {
         return total;
     }
 
-    public static Cell[] getCells(Board board, List<Coordinates> cellPositions) {
-        Cell[] cells = new Cell[cellPositions.size()];
+    public static List<Cell> getCells(Board board, List<Coordinates> cellPositions) {
+        List<Cell> cells = new ArrayList<>();
 
         for (int index = 0; index < cellPositions.size(); index++) {
-            cells[index] = board.getCellByPosition(cellPositions.get(index));
+            cells.add(board.getCellByPosition(cellPositions.get(index)));
         }
 
         return cells;

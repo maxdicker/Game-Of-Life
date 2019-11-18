@@ -87,20 +87,20 @@ public class BoardAnalyserTest {
     public void Given_BoardThatRequiresMultipleCellsToBeRevived_Then_AnalyserReturnsInstructionsToReviveThoseCells() {
         TestHelper.reviveCells(board, Arrays.asList(new Coordinates(2, 1), new Coordinates(2, 2), new Coordinates(2, 3)));
 
-        List<Cell> reviveInstructions = analyser.determineBoardChanges(board).getCellsToRevive();
+        List<Cell> actualReviveInstructions = analyser.determineBoardChanges(board).getCellsToRevive();
 
-        List<Cell> cellsToRevive = Arrays.asList(TestHelper.getCells(board, Arrays.asList(new Coordinates(1, 2), new Coordinates(3, 2))));
-        assertTrue(reviveInstructions.containsAll(cellsToRevive));
+        List<Cell> cellsToRevive = TestHelper.getCells(board, Arrays.asList(new Coordinates(1, 2), new Coordinates(3, 2)));
+        assertTrue(actualReviveInstructions.containsAll(cellsToRevive));
     }
 
     @Test
     public void Given_BoardThatRequiresMultipleCellsToBeKilled_Then_AnalyserReturnsInstructionsToKillThoseCells() {
         TestHelper.reviveCells(board, Arrays.asList(new Coordinates(2, 1), new Coordinates(2, 2), new Coordinates(2, 3)));
 
-        List<Cell> killInstructions = analyser.determineBoardChanges(board).getCellsToKill();
+        List<Cell> actualKillInstructions = analyser.determineBoardChanges(board).getCellsToKill();
 
-        List<Cell> cellsToKill = Arrays.asList(TestHelper.getCells(board, Arrays.asList(new Coordinates(2, 1), new Coordinates(2, 3))));
-        assertTrue(killInstructions.containsAll(cellsToKill));
+        List<Cell> cellsToKill = TestHelper.getCells(board, Arrays.asList(new Coordinates(2, 1), new Coordinates(2, 3)));
+        assertTrue(actualKillInstructions.containsAll(cellsToKill));
     }
 
 }

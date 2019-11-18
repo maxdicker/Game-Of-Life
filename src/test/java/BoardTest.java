@@ -54,8 +54,8 @@ public class BoardTest {
 
         Cell[] actual = board.getNeighbours(testCell);
 
-        Cell[] expected = TestHelper.getCells(board, positionsOfAllTestCellsNeighbours);
-        assertArrayEquals(actual, expected);
+        List<Cell> expected = TestHelper.getCells(board, positionsOfAllTestCellsNeighbours);
+        assertArrayEquals(expected.toArray(), actual);
     }
 
     @Test
