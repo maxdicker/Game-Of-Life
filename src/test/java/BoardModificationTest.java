@@ -1,7 +1,4 @@
-import core.Board;
-import core.BoardModifier;
-import core.Cell;
-import core.Coordinates;
+import core.*;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -39,11 +36,13 @@ public class BoardModificationTest {
 
     @Test
     public void Given_BoardWithLivingCellThatHasLessThanTwoLivingNeighbours_When_BoardIsModified_Then_CellDies() {
+        BoardAnalyser analyser = new BoardAnalyser();
         BoardModifier modifier = new BoardModifier();
         Board board = new Board(boardWidth, boardHeight, Collections.emptyList());
         TestHelper.reviveCells(board, positionsOfTestCellAndOneNeighbour);
 
-        modifier.nextGeneration(board);
+        BoardInstructions instructions = analyser.determineBoardChanges(board);
+        modifier.modifyBoard(instructions);
 
         Cell testCell = board.getCellByPosition(testCellPosition);
         assertFalse(testCell.isAlive());
@@ -51,11 +50,13 @@ public class BoardModificationTest {
 
     @Test
     public void Given_BoardWithLivingCellThatHasMoreThanThreeLivingNeighbours_When_BoardIsModified_Then_CellDies() {
+        BoardAnalyser analyser = new BoardAnalyser();
         BoardModifier modifier = new BoardModifier();
         Board board = new Board(boardWidth, boardHeight, Collections.emptyList());
         TestHelper.reviveCells(board, positionsOfTestCellAndFourNeighbours);
 
-        modifier.nextGeneration(board);
+        BoardInstructions instructions = analyser.determineBoardChanges(board);
+        modifier.modifyBoard(instructions);
 
         Cell testCell = board.getCellByPosition(testCellPosition);
         assertFalse(testCell.isAlive());
@@ -63,11 +64,13 @@ public class BoardModificationTest {
 
     @Test
     public void Given_BoardWithLivingCellThatHasTwoLivingNeighbours_When_BoardIsModified_Then_CellIsStillAlive() {
+        BoardAnalyser analyser = new BoardAnalyser();
         BoardModifier modifier = new BoardModifier();
         Board board = new Board(boardWidth, boardHeight, Collections.emptyList());
         TestHelper.reviveCells(board, positionsOfTestCellAndTwoNeighbours);
 
-        modifier.nextGeneration(board);
+        BoardInstructions instructions = analyser.determineBoardChanges(board);
+        modifier.modifyBoard(instructions);
 
         Cell testCell = board.getCellByPosition(testCellPosition);
         assertTrue(testCell.isAlive());
@@ -75,11 +78,13 @@ public class BoardModificationTest {
 
     @Test
     public void Given_BoardWithLivingCellThatHasThreeLivingNeighbours_When_BoardIsModified_Then_CellIsStillAlive() {
+        BoardAnalyser analyser = new BoardAnalyser();
         BoardModifier modifier = new BoardModifier();
         Board board = new Board(boardWidth, boardHeight, Collections.emptyList());
         TestHelper.reviveCells(board, positionsOfTestCellAndThreeNeighbours);
 
-        modifier.nextGeneration(board);
+        BoardInstructions instructions = analyser.determineBoardChanges(board);
+        modifier.modifyBoard(instructions);
 
         Cell testCell = board.getCellByPosition(testCellPosition);
         assertTrue(testCell.isAlive());
@@ -87,11 +92,13 @@ public class BoardModificationTest {
 
     @Test
     public void Given_BoardWithDeadCellThatHasThreeLivingNeighbours_When_BoardIsModified_Then_CellIsRevived() {
+        BoardAnalyser analyser = new BoardAnalyser();
         BoardModifier modifier = new BoardModifier();
         Board board = new Board(boardWidth, boardHeight, Collections.emptyList());
         TestHelper.reviveCells(board, positionsOfThreeTestCellNeighbours);
 
-        modifier.nextGeneration(board);
+        BoardInstructions instructions = analyser.determineBoardChanges(board);
+        modifier.modifyBoard(instructions);
 
         Cell testCell = board.getCellByPosition(testCellPosition);
         assertTrue(testCell.isAlive());
@@ -99,11 +106,13 @@ public class BoardModificationTest {
 
     @Test
     public void Given_BoardThatRequiresMultipleCellBirthsAndDeaths_When_BoardIsManipulated_Then_AllRequiredBirthsAndDeathsAreExecuted() {
+        BoardAnalyser analyser = new BoardAnalyser();
         BoardModifier modifier = new BoardModifier();
         Board actualBoard = new Board(boardWidth, boardHeight, Collections.emptyList());
         TestHelper.reviveCells(actualBoard, OscillatorPatternA);
 
-        modifier.nextGeneration(actualBoard);
+        BoardInstructions instructions = analyser.determineBoardChanges(actualBoard);
+        modifier.modifyBoard(instructions);
 
         Board expectedBoard = new Board(boardWidth, boardHeight, OscillatorPatternB);
         assertTrue(TestHelper.validateBoardsAreEqual(actualBoard, expectedBoard));

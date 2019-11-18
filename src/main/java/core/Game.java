@@ -8,6 +8,7 @@ import java.util.List;
 public class Game {
     private UserInputReader reader;
     private GameDisplay display;
+    private BoardAnalyser analyser;
     private BoardModifier modifier;
 
     private static final int MIN_BOARD_WIDTH = 2;
@@ -23,6 +24,7 @@ public class Game {
     public Game(UserInputReader reader, GameDisplay display) {
         this.reader = reader;
         this.display = display;
+        this.analyser = new BoardAnalyser();
         this.modifier = new BoardModifier();
     }
 
@@ -40,7 +42,8 @@ public class Game {
                 e.printStackTrace();
             }
 
-            modifier.nextGeneration(board);
+            BoardInstructions instructions = analyser.determineBoardChanges(board);
+            modifier.modifyBoard(instructions);
             display.displayBoard(board);
         }
 
