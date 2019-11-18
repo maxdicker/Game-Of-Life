@@ -7,8 +7,8 @@ import core.Coordinates;
 public class GameDisplay {
     private IO io;
 
-    private static final String ALIVE_CELL = "\u25FC";
-    private static final String DEAD_CELL = "\u25FB";
+    public static final String ALIVE_CELL = "\u25FC";
+    public static final String DEAD_CELL = "\u25FB";
 
     public GameDisplay(IO io) {
         this.io = io;

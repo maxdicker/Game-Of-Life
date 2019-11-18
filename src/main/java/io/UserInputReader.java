@@ -21,8 +21,8 @@ public class UserInputReader {
     private static final String INVALID_NUMBER_OUTSIDE_RANGE_MESSAGE = "The number you specified is not within the required range. Please try again.\n";
     private static final String INVALID_COORDINATE_OUTSIDE_RANGE_MESSAGE = "One of the coordinates you specified was not within the required range. Please try again.\n";
 
-    private static final String DEFAULT_COORDINATES_DELIMITER = "\\|";
-    private static final String DEFAULT_XY_DELIMITER = ",";
+    public static final String DEFAULT_COORDINATES_DELIMITER = "\\|";
+    public static final String DEFAULT_XY_DELIMITER = ",";
 
     public UserInputReader(IO io) {
         this.io = io;
