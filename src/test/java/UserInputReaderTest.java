@@ -104,7 +104,7 @@ public class UserInputReaderTest {
         List<Coordinates> actual = reader.getLivingCellPositionsFromUser(new Coordinates(0,0), new Coordinates(10,10));
 
         List<Coordinates> expected = Collections.singletonList(new Coordinates(1, 2));
-        assertTrue(TestHelper.validatePositionsAreEqual(expected, actual));
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -116,7 +116,7 @@ public class UserInputReaderTest {
         List<Coordinates> actual = reader.getLivingCellPositionsFromUser(new Coordinates(0,0), new Coordinates(10,10));
 
         List<Coordinates> expected = Arrays.asList(new Coordinates(1, 2), new Coordinates(2, 2), new Coordinates(2, 3));
-        assertTrue(TestHelper.validatePositionsAreEqual(expected, actual));
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -133,7 +133,7 @@ public class UserInputReaderTest {
         List<Coordinates> actual = reader.getLivingCellPositionsFromUser(new Coordinates(0,0), new Coordinates(10,10));
 
         List<Coordinates> expected = Arrays.asList(new Coordinates(1, 2), new Coordinates(2, 2), new Coordinates(2, 3));
-        assertTrue(TestHelper.validatePositionsAreEqual(expected, actual));
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -150,7 +150,7 @@ public class UserInputReaderTest {
         List<Coordinates> actual = reader.getLivingCellPositionsFromUser(fieldMin, fieldMax);
 
         List<Coordinates> expected = Arrays.asList(new Coordinates(1, 2), new Coordinates(2, 2), new Coordinates(2, 3));
-        assertTrue(TestHelper.validatePositionsAreEqual(expected, actual));
+        assertEquals(expected, actual);
     }
 
 }

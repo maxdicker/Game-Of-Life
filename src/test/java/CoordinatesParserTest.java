@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.List;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 public class CoordinatesParserTest {
 
@@ -20,7 +20,7 @@ public class CoordinatesParserTest {
         List<Coordinates> actual = parser.parseCoordinates(correctlyFormattedString);
 
         List<Coordinates> expected = Arrays.asList(new Coordinates(1,0), new Coordinates(0,10), new Coordinates(40,20));
-        assertTrue(TestHelper.validatePositionsAreEqual(expected, actual));
+        assertEquals(expected, actual);
     }
 
     @Test (expected = InputMismatchException.class)

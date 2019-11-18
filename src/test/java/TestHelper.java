@@ -27,21 +27,6 @@ public class TestHelper {
         return true;
     }
 
-    public static boolean validatePositionsAreEqual(List<Coordinates> positions, List<Coordinates> comparisonPositions) {
-
-        if (positions.size() != comparisonPositions.size()) {
-            return false;
-        }
-
-        for (int index = 0; index < positions.size(); index++) {
-            if (!(positions.get(index).compareTo(comparisonPositions.get(index)) == 0)) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
     public static int countLivingCells(Collection<Cell> cells) {
         int total = 0;
         for (Cell cell : cells) {
