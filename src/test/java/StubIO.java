@@ -17,8 +17,8 @@ public class StubIO implements IO {
         this.stubInput = new ArrayList<>(stubInput);
     }
 
-    public List<String> getOutput() {
-        return stubOutput;
+    public String getLastOutput() {
+        return stubOutput.get(stubOutput.size()-1);
     }
 
     @Override
