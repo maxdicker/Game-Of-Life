@@ -21,7 +21,7 @@ public class TestHelper {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 Coordinates position = new Coordinates(x, y);
-                if (board.getCellByPosition(position).isAlive() != comparisonBoard.getCellByPosition(position).isAlive()) {
+                if (board.getCellAtPosition(position).isAlive() != comparisonBoard.getCellAtPosition(position).isAlive()) {
                     return false;
                 }
             }
@@ -44,7 +44,7 @@ public class TestHelper {
         List<Cell> cells = new ArrayList<>();
 
         for (int index = 0; index < cellPositions.size(); index++) {
-            cells.add(board.getCellByPosition(cellPositions.get(index)));
+            cells.add(board.getCellAtPosition(cellPositions.get(index)));
         }
 
         return cells;
@@ -52,7 +52,7 @@ public class TestHelper {
 
     public static void reviveCells(Board board, List<Coordinates> cellPositions) {
         for (Coordinates position: cellPositions) {
-            board.getCellByPosition(position).revive();
+            board.getCellAtPosition(position).revive();
         }
     }
 }

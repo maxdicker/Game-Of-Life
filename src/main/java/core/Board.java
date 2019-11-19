@@ -27,7 +27,7 @@ public class Board {
 
     private void reviveCellsAtPositions(List<Coordinates> positions) {
         for (Coordinates position : positions) {
-            getCellByPosition(position).revive();
+            getCellAtPosition(position).revive();
         }
     }
 
@@ -35,7 +35,7 @@ public class Board {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 Coordinates position = new Coordinates(x, y);
-                neighboursByCell.put(getCellByPosition(position), findNeighboursByPosition(position));
+                neighboursByCell.put(getCellAtPosition(position), findNeighboursByPosition(position));
             }
         }
     }
@@ -46,17 +46,17 @@ public class Board {
         int leftX =     (position.x + width - 1) % (width);
         int rightX =    (position.x + width + 1) % (width);
 
-        return new Cell[] {getCellByPosition(new Coordinates(leftX, upY)),
-                getCellByPosition(new Coordinates(position.x, upY)),
-                getCellByPosition(new Coordinates(rightX, upY)),
-                getCellByPosition(new Coordinates(rightX, position.y)),
-                getCellByPosition(new Coordinates(rightX, downY)),
-                getCellByPosition(new Coordinates(position.x, downY)),
-                getCellByPosition(new Coordinates(leftX, downY)),
-                getCellByPosition(new Coordinates(leftX, position.y))};
+        return new Cell[] {getCellAtPosition(new Coordinates(leftX, upY)),
+                getCellAtPosition(new Coordinates(position.x, upY)),
+                getCellAtPosition(new Coordinates(rightX, upY)),
+                getCellAtPosition(new Coordinates(rightX, position.y)),
+                getCellAtPosition(new Coordinates(rightX, downY)),
+                getCellAtPosition(new Coordinates(position.x, downY)),
+                getCellAtPosition(new Coordinates(leftX, downY)),
+                getCellAtPosition(new Coordinates(leftX, position.y))};
     }
 
-    public Cell getCellByPosition(Coordinates position) {
+    public Cell getCellAtPosition(Coordinates position) {
         int positionAsIndex = position.y * width + position.x;
         return (Cell) neighboursByCell.keySet().toArray()[positionAsIndex];
     }

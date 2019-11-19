@@ -43,7 +43,7 @@ public class Game {
             }
 
             BoardInstructions instructions = analyser.determineBoardChanges(board);
-            modifier.modifyBoard(instructions);
+            modifier.executeInstructions(instructions);
             display.displayBoard(board);
         }
 

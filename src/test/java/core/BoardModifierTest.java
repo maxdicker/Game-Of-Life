@@ -16,7 +16,7 @@ public class BoardModifierTest {
         instructions.addReviveInstruction(cellToRevive);
         BoardModifier modifier = new BoardModifier();
 
-        modifier.modifyBoard(instructions);
+        modifier.executeInstructions(instructions);
 
         assertFalse(cellToKill.isAlive());
         assertTrue(cellToRevive.isAlive());

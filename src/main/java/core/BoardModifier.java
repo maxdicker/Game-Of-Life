@@ -2,7 +2,7 @@ package core;
 
 public class BoardModifier {
 
-    public void modifyBoard(BoardInstructions instructions) {
+    public void executeInstructions(BoardInstructions instructions) {
         for (Cell cell : instructions.getCellsToKill()) {
             cell.kill();
         }

@@ -38,7 +38,7 @@ public class BoardAnalyserTest {
     public void init() {
         analyser = new BoardAnalyser();
         board = new Board(5, 5, Collections.emptyList());
-        testCell = board.getCellByPosition(testCellPosition);
+        testCell = board.getCellAtPosition(testCellPosition);
     }
 
     @Test
