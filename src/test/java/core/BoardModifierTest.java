@@ -1,6 +1,5 @@
-import core.BoardInstructions;
-import core.BoardModifier;
-import core.Cell;
+package core;
+
 import org.junit.Test;
 
 import static org.junit.Assert.assertFalse;

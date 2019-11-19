@@ -1,7 +1,9 @@
+package io;
+
 import core.Board;
 import core.Coordinates;
-import io.GameDisplay;
 import org.junit.Test;
+import utils.StubIO;
 
 import java.util.Arrays;
 import java.util.List;

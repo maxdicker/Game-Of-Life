@@ -1,12 +1,15 @@
-import core.*;
+package core;
+
 import org.junit.Before;
 import org.junit.Test;
+import utils.TestHelper;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 public class BoardAnalyserTest {
     private BoardAnalyser analyser;

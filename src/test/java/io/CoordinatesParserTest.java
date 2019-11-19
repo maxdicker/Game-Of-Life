@@ -1,8 +1,8 @@
+package io;
+
 import core.Coordinates;
-import io.UserInputReader;
 import org.junit.Before;
 import org.junit.Test;
-import io.CoordinatesParser;
 
 import java.util.Arrays;
 import java.util.Collections;

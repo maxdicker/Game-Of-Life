@@ -1,15 +1,16 @@
-import core.Board;
-import core.Coordinates;
-import core.Game;
+package core;
+
 import io.GameDisplay;
 import io.IO;
 import io.UserInputReader;
 import org.junit.Test;
+import utils.StubIO;
+import utils.TestHelper;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 public class GameTest {
 

@@ -1,12 +1,14 @@
+package io;
+
 import core.Coordinates;
 import org.junit.Test;
-import io.InputValidator;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 public class InputValidatorTest {
     private static final int numMin = 1;

@@ -1,7 +1,7 @@
-import core.Board;
-import core.Cell;
-import core.Coordinates;
+package core;
+
 import org.junit.Test;
+import utils.TestHelper;
 
 import java.util.Arrays;
 import java.util.Collections;

@@ -1,3 +1,5 @@
+package utils;
+
 import core.Board;
 import core.Cell;
 import core.Coordinates;
