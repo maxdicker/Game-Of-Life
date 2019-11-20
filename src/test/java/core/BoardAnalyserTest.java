@@ -43,6 +43,10 @@ public class BoardAnalyserTest {
     private static final List<Coordinates> positionsToKillOnTestPattern = Arrays.asList(
             new Coordinates(2, 1), new Coordinates(2, 3));
 
+    // These are good tests. I'm OK with the test names now that I'm used to them, but I've
+    // added some suggestions for shorter names which are less specific, but I think convey
+    // the important information.
+
     @Before
     public void init() {
         analyser = new BoardAnalyser();
@@ -51,6 +55,7 @@ public class BoardAnalyserTest {
     }
 
     @Test
+    // suggested shorter name: liveCellWithOneLivingNeighbour_shouldDie
     public void Given_ALivingCellWithLessThanTwoLivingNeighbours_Then_ReturnInstructionToKillTheCell() {
         TestHelper.reviveCells(board, positionsOfTestCellAndOneNeighbour);
 
@@ -60,6 +65,7 @@ public class BoardAnalyserTest {
     }
 
     @Test
+    // suggested shorter name: liveCellWithFourLivingNeighbours_shouldDie
     public void Given_ALivingCellWithMoreThanThreeLivingNeighbours_Then_ReturnInstructionToKillTheCell() {
         TestHelper.reviveCells(board, positionsOfTestCellAndFourNeighbours);
 
@@ -69,6 +75,7 @@ public class BoardAnalyserTest {
     }
 
     @Test
+    // suggested shorter name: liveCellWithTwoLivingNeighbours_shouldLive
     public void Given_ALivingCellWithTwoLivingNeighbours_Then_DoesNotReturnInstructionToKillTheCell() {
         TestHelper.reviveCells(board, positionsOfTestCellAndTwoNeighbours);
 
@@ -87,6 +94,7 @@ public class BoardAnalyserTest {
     }
 
     @Test
+    // suggested shorter name: deadCellWithThreeLivingNeighbours_shouldRevive
     public void Given_ADeadCellWithThreeLivingNeighbours_Then_ReturnInstructionToReviveTheCell() {
         TestHelper.reviveCells(board, positionsOfThreeTestCellNeighbours);
 

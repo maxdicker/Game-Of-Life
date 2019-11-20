@@ -26,14 +26,22 @@ public class GameTest {
         UserInputReader reader = new UserInputReader(stubIO);
         GameDisplay display = new GameDisplay(stubIO);
         Game game = new Game(reader, display);
+        Board expectedFinalBoard = createBoardWithLivingCellsAtCoordinates(5, 5,
+                new Coordinates(3,1), new Coordinates(4,2),
+                new Coordinates(2,3), new Coordinates(3,3),
+                new Coordinates(4,3));
 
         Board actual = game.run();
 
-        Board expected = new Board(5, 5, Collections.emptyList());
-        TestHelper.reviveCells(expected, Arrays.asList(new Coordinates(3,1), new Coordinates(4,2),
-                new Coordinates(2,3), new Coordinates(3,3), new Coordinates(4,3)));
+        assertTrue(TestHelper.validateBoardsAreEqual(actual, expectedFinalBoard));
+    }
 
-        assertTrue(TestHelper.validateBoardsAreEqual(actual, expected));
+    private Board createBoardWithLivingCellsAtCoordinates(int width, int height, Coordinates... livingCellCoordinates) {
+        // I want this constructor :)
+        // Board board = new Board(5, 5);
+        Board board = new Board(width, height, Collections.emptyList());
+        TestHelper.reviveCells(board, Arrays.asList(livingCellCoordinates));
+        return board;
     }
 
 }

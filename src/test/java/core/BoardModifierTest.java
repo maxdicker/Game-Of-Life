@@ -26,10 +26,11 @@ public class BoardModifierTest {
         TestHelper.addKillInstructions(instructions, cells);
 
         modifier.executeInstructions(instructions);
-        int actual = TestHelper.countLivingCells(cells);
+        int numberOfLivingCells = TestHelper.countLivingCells(cells);
 
-        int expected = 0;
-        assertEquals(expected, actual);
+        // since the expected value is so simple, I think doing `var expected = 0;` makes the test less readable
+        // also, the name 'actual' makes my goldfish brain forget what the actual is referring to
+        assertEquals(0, numberOfLivingCells);
     }
 
     @Test

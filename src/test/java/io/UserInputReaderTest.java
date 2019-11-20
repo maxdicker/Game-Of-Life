@@ -13,6 +13,8 @@ import static org.junit.Assert.assertEquals;
 public class UserInputReaderTest {
     private static final String anInteger = "5";
     private static final String intWithinRange = "5";
+    private static final String intBelowRange = "-1";
+    private static final String intAboveRange = "11";
     private static final int fieldMin = 0;
     private static final int fieldMax = 10;
 
@@ -31,6 +33,7 @@ public class UserInputReaderTest {
     private static final List<Coordinates> expectedPositions = Arrays.asList(
             new Coordinates(1, 2), new Coordinates(2, 2), new Coordinates(2, 3));
 
+
     @Test
     public void Given_InitialInputIsNotInteger_When_GettingBoardWidth_Then_GetsMoreInputAndReturnsFirstInteger() {
         List<String> stubInput = Arrays.asList("", "\n", "foo", anInteger);
@@ -45,7 +48,8 @@ public class UserInputReaderTest {
 
     @Test
     public void Given_InitialInputIsOutsideRange_When_GettingBoardWidth_Then_GetsMoreInputAndReturnsFirstWithinRange() {
-        List<String> stubInput = Arrays.asList("-1", "11", intWithinRange);
+        // just to be consistent with other test data
+        List<String> stubInput = Arrays.asList(intBelowRange, intAboveRange, intWithinRange);
         IO stubIO = new StubIO(stubInput);
         UserInputReader reader = new UserInputReader(stubIO);
 
