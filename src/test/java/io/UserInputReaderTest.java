@@ -104,7 +104,7 @@ public class UserInputReaderTest {
     }
 
     @Test
-    public void Given_InputIsFormattedCorrectly_When_GettingCoordinates_Then_ReturnsSingleSetOfCoordinates() {
+    public void Given_InputIsFormattedCorrectly_When_GettingCoordinates_Then_ReturnSingleSetOfCoordinates() {
         IO stubIO = new StubIO(positionInCorrectFormat);
         UserInputReader reader = new UserInputReader(stubIO);
 
@@ -114,7 +114,7 @@ public class UserInputReaderTest {
     }
 
     @Test
-    public void Given_InputIsFormattedCorrectly_When_GettingCoordinates_Then_ReturnsMultipleCoordinates() {
+    public void Given_InputIsFormattedCorrectly_When_GettingCoordinates_Then_ReturnMultipleCoordinates() {
         IO stubIO = new StubIO(positionsInCorrectFormat);
         UserInputReader reader = new UserInputReader(stubIO);
 

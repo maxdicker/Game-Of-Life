@@ -34,6 +34,15 @@ public class BoardAnalyserTest {
             new Coordinates(0, 0), new Coordinates(0, 1), new Coordinates(1, 1),
             new Coordinates(1, 0), new Coordinates(4, 4));
 
+    private static final List<Coordinates> testPattern = Arrays.asList(
+            new Coordinates(2, 1), new Coordinates(2, 2), new Coordinates(2, 3));
+
+    private static final List<Coordinates> positionsToReviveOnTestPattern = Arrays.asList(
+            new Coordinates(1, 2), new Coordinates(3, 2));
+
+    private static final List<Coordinates> positionsToKillOnTestPattern = Arrays.asList(
+            new Coordinates(2, 1), new Coordinates(2, 3));
+
     @Before
     public void init() {
         analyser = new BoardAnalyser();
@@ -42,7 +51,7 @@ public class BoardAnalyserTest {
     }
 
     @Test
-    public void Given_LivingCellWithLessThanTwoLivingNeighbours_Then_AnalyserReturnsInstructionToKillTheCell() {
+    public void Given_ALivingCellWithLessThanTwoLivingNeighbours_Then_ReturnInstructionToKillTheCell() {
         TestHelper.reviveCells(board, positionsOfTestCellAndOneNeighbour);
 
         BoardInstructions instructions = analyser.determineBoardChanges(board);
@@ -51,7 +60,7 @@ public class BoardAnalyserTest {
     }
 
     @Test
-    public void Given_LivingCellWithMoreThanThreeLivingNeighbours_Then_AnalyserReturnsInstructionToKillTheCell() {
+    public void Given_ALivingCellWithMoreThanThreeLivingNeighbours_Then_ReturnInstructionToKillTheCell() {
         TestHelper.reviveCells(board, positionsOfTestCellAndFourNeighbours);
 
         BoardInstructions instructions = analyser.determineBoardChanges(board);
@@ -60,7 +69,7 @@ public class BoardAnalyserTest {
     }
 
     @Test
-    public void Given_LivingCellWithTwoLivingNeighbours_Then_AnalyserDoesNotReturnInstructionToKillTheCell() {
+    public void Given_ALivingCellWithTwoLivingNeighbours_Then_DoesNotReturnInstructionToKillTheCell() {
         TestHelper.reviveCells(board, positionsOfTestCellAndTwoNeighbours);
 
         BoardInstructions instructions = analyser.determineBoardChanges(board);
@@ -69,7 +78,7 @@ public class BoardAnalyserTest {
     }
 
     @Test
-    public void Given_LivingCellWithThreeLivingNeighbours_Then_AnalyserDoesNotReturnInstructionToKillTheCell() {
+    public void Given_ALivingCellWithThreeLivingNeighbours_Then_DoesNotReturnInstructionToKillTheCell() {
         TestHelper.reviveCells(board, positionsOfTestCellAndThreeNeighbours);
 
         BoardInstructions instructions = analyser.determineBoardChanges(board);
@@ -78,7 +87,7 @@ public class BoardAnalyserTest {
     }
 
     @Test
-    public void Given_DeadCellWithThreeLivingNeighbours_Then_AnalyserReturnsInstructionToReviveTheCell() {
+    public void Given_ADeadCellWithThreeLivingNeighbours_Then_ReturnInstructionToReviveTheCell() {
         TestHelper.reviveCells(board, positionsOfThreeTestCellNeighbours);
 
         BoardInstructions instructions = analyser.determineBoardChanges(board);
@@ -87,23 +96,23 @@ public class BoardAnalyserTest {
     }
 
     @Test
-    public void Given_BoardThatRequiresMultipleCellsToBeRevived_Then_AnalyserReturnsInstructionsToReviveThoseCells() {
-        TestHelper.reviveCells(board, Arrays.asList(new Coordinates(2, 1), new Coordinates(2, 2), new Coordinates(2, 3)));
+    public void Given_BoardThatRequiresMultipleCellsToBeRevived_Then_ReturnInstructionsToReviveThoseCells() {
+        TestHelper.reviveCells(board, testPattern);
 
-        List<Cell> actualReviveInstructions = analyser.determineBoardChanges(board).getCellsToRevive();
+        List<Cell> cellsToRevive = analyser.determineBoardChanges(board).getCellsToRevive();
 
-        List<Cell> cellsToRevive = TestHelper.getCells(board, Arrays.asList(new Coordinates(1, 2), new Coordinates(3, 2)));
-        assertTrue(actualReviveInstructions.containsAll(cellsToRevive));
+        List<Cell> requiredCells = TestHelper.getCells(board, positionsToReviveOnTestPattern);
+        assertTrue(cellsToRevive.containsAll(requiredCells));
     }
 
     @Test
-    public void Given_BoardThatRequiresMultipleCellsToBeKilled_Then_AnalyserReturnsInstructionsToKillThoseCells() {
-        TestHelper.reviveCells(board, Arrays.asList(new Coordinates(2, 1), new Coordinates(2, 2), new Coordinates(2, 3)));
+    public void Given_BoardThatRequiresMultipleCellsToBeKilled_Then_ReturnInstructionsToKillThoseCells() {
+        TestHelper.reviveCells(board, testPattern);
 
-        List<Cell> actualKillInstructions = analyser.determineBoardChanges(board).getCellsToKill();
+        List<Cell> cellsToKill = analyser.determineBoardChanges(board).getCellsToKill();
 
-        List<Cell> cellsToKill = TestHelper.getCells(board, Arrays.asList(new Coordinates(2, 1), new Coordinates(2, 3)));
-        assertTrue(actualKillInstructions.containsAll(cellsToKill));
+        List<Cell> requiredCells = TestHelper.getCells(board, positionsToKillOnTestPattern);
+        assertTrue(cellsToKill.containsAll(requiredCells));
     }
 
 }

@@ -98,7 +98,7 @@ public class UserInputReader {
     }
 
     private void displayPositionBoundariesToUser(Coordinates min, Coordinates max) {
-        io.displayOutput("The core.Coordinates must be between " + convertCoordinatesToString(min) + " and " + convertCoordinatesToString(max) + ".\n");
+        io.displayOutput("The coordinates must be between " + convertCoordinatesToString(min) + " and " + convertCoordinatesToString(max) + ".\n");
     }
 
     private String convertCoordinatesToString(Coordinates position) {

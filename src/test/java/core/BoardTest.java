@@ -21,7 +21,7 @@ public class BoardTest {
             new Coordinates(4, 1), new Coordinates(4, 0));
 
     @Test
-    public void ContainsQuantityOfCellsEqualToWidthMultipliedByHeight() {
+    public void ContainsNumberOfCellsEqualToWidthMultipliedByHeight() {
         Board board = new Board(boardWidth, boardHeight, Collections.emptyList());
 
         int actual = board.getCells().size();
@@ -48,7 +48,7 @@ public class BoardTest {
     }
 
     @Test
-    public void When_RetrievingNeighboursOfACell_Then_BoardReturnsCellsInTheEightNeighbouringPositions() {
+    public void When_RetrievingNeighboursOfACell_Then_ReturnCellsInTheEightNeighbouringPositions() {
         Board board = new Board(boardWidth, boardHeight, Collections.emptyList());
         Cell testCell = board.getCellAtPosition(testCellPosition);
 
@@ -59,14 +59,14 @@ public class BoardTest {
     }
 
     @Test
-    public void Given_ANeighboursStateHasChanged_When_RetrievingNeighboursOfACell_Then_BoardReturnsUpdatedNeighbour() {
+    public void Given_ANeighboursStateHasChanged_When_RetrievingNeighboursOfACell_Then_ReturnUpdatedNeighbour() {
         Board board = new Board(boardWidth, boardHeight, Collections.emptyList());
         Cell testCell = board.getCellAtPosition(testCellPosition);
-
         board.getCellAtPosition(positionOfATestCellNeighbour).revive();
-        Cell[] neighbours = board.getNeighbours(testCell);
 
+        Cell[] neighbours = board.getNeighbours(testCell);
         int actual = TestHelper.countLivingCells(Arrays.asList(neighbours));
+
         int expected = 1;
         assertEquals(expected, actual);
     }

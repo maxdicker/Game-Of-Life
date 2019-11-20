@@ -22,7 +22,7 @@ public class CoordinatesParserTest {
     }
 
     @Test
-    public void Given_StringConformsToPattern_Then_ParserReturnsCorrespondingSingleCoordinatesSet() {
+    public void Given_StringConformsToPattern_Then_ReturnCorrespondingSingleCoordinatesSet() {
         String input = "1,2";
 
         List<Coordinates> actual = parser.parseCoordinates(input);
@@ -32,7 +32,7 @@ public class CoordinatesParserTest {
     }
 
     @Test
-    public void Given_StringConformsToPattern_Then_ParserReturnsCorrespondingListOfCoordinates() {
+    public void Given_StringConformsToPattern_Then_ReturnCorrespondingListOfCoordinates() {
         String input = "1,0|0,10|40,20";
 
         List<Coordinates> actual = parser.parseCoordinates(input);
@@ -42,28 +42,28 @@ public class CoordinatesParserTest {
     }
 
     @Test (expected = InputMismatchException.class)
-    public void Given_StringHasExcessWhitespace_Then_ParserThrowsInputMismatchException() {
+    public void Given_StringHasExcessWhitespace_Then_ThrowsInputMismatchException() {
         String input = "1,0|0,10|40,20 ";
 
         parser.parseCoordinates(input);
     }
 
     @Test (expected = InputMismatchException.class)
-    public void Given_StringHasExcessCoordinatesDelimiters_Then_ParserThrowsInputMismatchException() {
+    public void Given_StringHasExcessCoordinatesDelimiters_Then_ThrowsInputMismatchException() {
         String input = "1,0|0,10||40,20";
 
         parser.parseCoordinates(input);
     }
 
     @Test (expected = InputMismatchException.class)
-    public void Given_StringHasExcessXYDelimiters_Then_ParserThrowsInputMismatchException() {
+    public void Given_StringHasExcessXYDelimiters_Then_ThrowsInputMismatchException() {
         String input = "1,0|0,,10|40,20";
 
         parser.parseCoordinates(input);
     }
 
     @Test (expected = InputMismatchException.class)
-    public void Given_StringIsNonNumeric_Then_ParserThrowsInputMismatchException() {
+    public void Given_StringIsNonNumeric_Then_ThrowsInputMismatchException() {
         String input = "1,0|0,g|40,20";
 
         parser.parseCoordinates(input);

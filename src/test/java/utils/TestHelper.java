@@ -1,6 +1,7 @@
 package utils;
 
 import core.Board;
+import core.BoardInstructions;
 import core.Cell;
 import core.Coordinates;
 
@@ -55,4 +56,17 @@ public class TestHelper {
             board.getCellAtPosition(position).revive();
         }
     }
+
+    public static void addKillInstructions(BoardInstructions instructions, List<Cell> cells) {
+        for (Cell cell : cells) {
+            instructions.addKillInstruction(cell);
+        }
+    }
+
+    public static void addReviveInstructions(BoardInstructions instructions, List<Cell> cells) {
+        for (Cell cell : cells) {
+            instructions.addReviveInstruction(cell);
+        }
+    }
+
 }
