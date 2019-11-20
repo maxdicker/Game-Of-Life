@@ -13,6 +13,8 @@ import static org.junit.Assert.assertEquals;
 public class UserInputReaderTest {
     private static final String anInteger = "5";
     private static final String intWithinRange = "5";
+    private static final String intBelowRange = "-1";
+    private static final String intAboveRange = "11";
     private static final int fieldMin = 0;
     private static final int fieldMax = 10;
 
@@ -45,7 +47,7 @@ public class UserInputReaderTest {
 
     @Test
     public void Given_InitialInputIsOutsideRange_When_GettingBoardWidth_Then_GetsMoreInputAndReturnsFirstWithinRange() {
-        List<String> stubInput = Arrays.asList("-1", "11", intWithinRange);
+        List<String> stubInput = Arrays.asList(intBelowRange, intAboveRange, intWithinRange);
         IO stubIO = new StubIO(stubInput);
         UserInputReader reader = new UserInputReader(stubIO);
 
@@ -69,7 +71,7 @@ public class UserInputReaderTest {
 
     @Test
     public void Given_InitialInputIsOutsideRange_When_GettingBoardHeight_Then_GetsMoreInputAndReturnsFirstWithinRange() {
-        List<String> stubInput = Arrays.asList("-1", "11", intWithinRange);
+        List<String> stubInput = Arrays.asList(intBelowRange, intAboveRange, intWithinRange);
         IO stubIO = new StubIO(stubInput);
         UserInputReader reader = new UserInputReader(stubIO);
 
@@ -93,7 +95,7 @@ public class UserInputReaderTest {
 
     @Test
     public void Given_InitialInputIsOutsideRange_When_GettingNumberOfEvolutions_Then_GetsMoreInputAndReturnsFirstWithinRange() {
-        List<String> stubInput = Arrays.asList("-1", "11", intWithinRange);
+        List<String> stubInput = Arrays.asList(intBelowRange, intAboveRange, intWithinRange);
         IO stubIO = new StubIO(stubInput);
         UserInputReader reader = new UserInputReader(stubIO);
 

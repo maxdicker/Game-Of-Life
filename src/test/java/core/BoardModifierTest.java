@@ -26,10 +26,9 @@ public class BoardModifierTest {
         TestHelper.addKillInstructions(instructions, cells);
 
         modifier.executeInstructions(instructions);
-        int actual = TestHelper.countLivingCells(cells);
+        int numberOfLivingCells = TestHelper.countLivingCells(cells);
 
-        int expected = 0;
-        assertEquals(expected, actual);
+        assertEquals(0, numberOfLivingCells);
     }
 
     @Test
@@ -37,10 +36,9 @@ public class BoardModifierTest {
         TestHelper.addReviveInstructions(instructions, cells);
 
         modifier.executeInstructions(instructions);
-        int actual = TestHelper.countLivingCells(cells);
+        int numberOfLivingCells = TestHelper.countLivingCells(cells);
 
-        int expected = cells.size();
-        assertEquals(expected, actual);
+        assertEquals(cells.size(), numberOfLivingCells);
     }
 
 }
